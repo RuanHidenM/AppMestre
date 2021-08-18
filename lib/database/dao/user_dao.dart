@@ -1,39 +1,67 @@
+import 'dart:math';
+
 import 'package:appmestre/database/app_database.dart';
-import 'package:appmestre/modelos/userauth.dart';
+import 'package:appmestre/modelos/usuario.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class UserDao{
+
   static const String tableSql =
-      'CREATE TABLE User('
-      'authenticated TEXT, '
-      'created TEXT, '
-      'expiration TEXT, '
-      'token TEXT, '
-      'message TEXT, '
-      'usuario_nome TEXT, '
-      'tenant_nome TEXT, '
-      'empresa_nome TEXT, '
-      ') ';
+      'CREATE TABLE Usuario('
+      'id TEXT, '
+      'nome TEXT, '
+      'email TEXT, '
+      'tenantid TEXT, '
+      'token TEXT) ';
 
   //TODO: Salvando um UsuarioLogin
-  Future<int> save(UserLog userlog) async{
-    final Database db = await getDatabase();
-    final Map<String, dynamic> userlogMap = Map();
-    userlogMap['authenticated'] = userlog;
-    userlogMap['created'] = userlog;
-    userlogMap['expiration'] = userlog;
-    userlogMap['token'] = userlog;
-    userlogMap['message'] = userlog;
-    userlogMap['usuario_nome'] = userlog;
-    userlogMap['tenant_nome'] = userlog;
-    userlogMap['empresa_nome'] = userlog;
+  Future<int> save(Usuario usuario) async{
+    findUsuario().then((value) async {
+      if(value.length == 0){
 
-    return db.insert('userLogado', userlogMap);
+        final Database db = await getDatabase();
+        final Map<String, dynamic> userMap = Map();
+
+        userMap['id'] = usuario.id;
+        userMap['nome'] = usuario.nome;
+        userMap['email'] = usuario.email;
+        userMap['tenantid'] = usuario.tenantid;
+        userMap['token'] = usuario.token;
+
+        return db.insert('Usuario', userMap);
+
+      }
+    });
+    return 0;
   }
 
-  // Future<int> findAll() async{
-  //   final Database db = await getDatabase();
-  //   await db.query('user')
-  // }
 
+  //TODO: Buscando todos os Usuario
+  Future<List<Usuario>> findUsuario() async{
+    final Database db = await getDatabase();
+    await db.query('Usuario');
+    final List<Map<String, dynamic>> result = await db.rawQuery('SELECT * FROM Usuario');
+    final List<Usuario> usuarios = [];
+
+    for(Map<String, dynamic> row in result){
+      final Usuario usuario = Usuario(
+          row['id'],
+          row['nome'],
+          row ['email'],
+          row['tenantid'],
+          row['token'],
+      );
+
+      usuarios.add(usuario);
+      //print('Usuario buscados : ${usuarios.length}');
+    }
+    return usuarios;
+  }
+
+  //TODO: Deletando todos o usuario na tabela (Usuario) logado.
+  Future<int> deletaUsuarioLogado() async{
+    final Database db = await getDatabase();
+    //return db.rawDelete('DELETE FROM prod')
+    return db.delete('Usuario');
+  }
 }

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:appmestre/http/webclient.dart';
+import 'package:appmestre/screens/home.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,10 +36,11 @@ class _LoginPageState extends State<LoginPage> {
 
   //TODO: Verifica o status da conecção.
   StreamConnectivityResult(){
-  String resultStreamConnectivityResult;
   StreamSubscription<ConnectivityResult>_connectivitySubscription;
       _connectivitySubscription = _connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
-        setState(() => _connectionStatus = result.toString());
+        setState((){
+          _connectionStatus = result.toString();
+        });
         print('conectss: ${_connectionStatus}');
         if(_connectionStatus == "ConnectivityResult.none"){
           AlertaConectInternet();
@@ -71,7 +73,8 @@ class _LoginPageState extends State<LoginPage> {
       DeviceOrientation.portraitUp,
     ]);
     return Scaffold(
-      //resizeToAvoidBottomInset: false,//TODO:Permitindo que a tela se arrume quando o teclado for chamado.
+      //TODO: Permitindo que a tela se arrume quando o teclado for chamado.
+      //resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Stack(
@@ -108,6 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                           flex: 5,
                           child: Column(
                             children: [
+                              //TODO Bloco TextField e button 'Entrar'
                               Expanded(
                                 flex: 5,
                                 child: Container(
@@ -138,63 +142,41 @@ class _LoginPageState extends State<LoginPage> {
                                         ),
                                         //TODO: Antigo TextForm
 
-                                        // myTextField(
-                                        //     titleName: 'E-mail',
-                                        //     descriptionName: 'Informe seu E-mail',
-                                        //     changeTypeName: (text) {email = text;},
-                                        //     typeKeyBoard: TextInputType.emailAddress,
-                                        //     nomeDoComtrolador: null,
-                                        //     TextTipeMask: null,
-                                        //     obscureText: false,
-                                        //     colorTextField: Color.fromRGBO(
-                                        //         155, 155, 155, 210
-                                        //     ),
-                                        // ),
-                                        // myTextField(
-                                        //     titleName: 'Senha',
-                                        //     descriptionName:
-                                        //     'Informe sua Senha',
-                                        //     changeTypeName: (text) {
-                                        //       senha = text;
-                                        //     },
-                                        //     typeKeyBoard:
-                                        //     TextInputType.visiblePassword,
-                                        //     nomeDoComtrolador: null,
-                                        //     TextTipeMask: null,
-                                        //     obscureText: true,
-                                        //     colorTextField: Color.fromRGBO(
-                                        //         155, 155, 155, 210)
-                                        // ),
-
                                         Padding(
                                           padding: const EdgeInsets.only(top: 8, bottom: 3, left: 3, right: 3),
-                                          child: TextField(
-                                            obscureText: false,
-                                            controller: _emailUser,
-                                            decoration: InputDecoration(
-                                              border: OutlineInputBorder(
+                                          child: Container(
+                                            color: Color.fromRGBO(155, 155, 155, 210),
+                                            child: TextField(
+                                              obscureText: false,
+                                              controller: _emailUser,
+                                              decoration: InputDecoration(
+                                                border: OutlineInputBorder(
+                                                ),
+                                                 labelStyle: TextStyle(
+                                                   color: Colors.black54,
+                                                 ),
+                                                labelText: 'E-mail',
+                                                //errorText: _verificaNomeEmpty ? 'Este campo é obrigatório' : null,
                                               ),
-                                               labelStyle: TextStyle(
-                                                 fontSize: MediaWidth / 22
-                                               ),
-                                              labelText: 'E-mail',
-                                              //errorText: _verificaNomeEmpty ? 'Este campo é obrigatório' : null,
                                             ),
                                           ),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(top: 8, bottom: 3, left: 3, right: 3),
-                                          child: TextField(
-                                            obscureText: false,
-                                            controller: _senhaUser,
-                                            decoration: InputDecoration(
-                                              border: OutlineInputBorder(
+                                          child: Container(
+                                            color: Color.fromRGBO(155, 155, 155, 210),
+                                            child: TextField(
+                                              obscureText: false,
+                                              controller: _senhaUser,
+                                              decoration: InputDecoration(
+                                                border: OutlineInputBorder(
+                                                ),
+                                                labelStyle: TextStyle(
+                                                    fontSize: MediaWidth / 22
+                                                ),
+                                                labelText: 'Senha',
+                                                //errorText: _verificaNomeEmpty ? 'Este campo é obrigatório' : null,
                                               ),
-                                              labelStyle: TextStyle(
-                                                  fontSize: MediaWidth / 22
-                                              ),
-                                              labelText: 'Senha',
-                                              //errorText: _verificaNomeEmpty ? 'Este campo é obrigatório' : null,
                                             ),
                                           ),
                                         ),
@@ -210,6 +192,8 @@ class _LoginPageState extends State<LoginPage> {
                                               corDoTexto: Colors.white
                                           ),
                                           onTap: () async {
+
+
                                             //TODO; VERIFICA SE TEM INTERNET
                                             if(_connectionStatus == 'ConnectivityResult.none'){
                                               AlertaConectInternet();
@@ -225,21 +209,34 @@ class _LoginPageState extends State<LoginPage> {
                                                   SnackBar(content:
                                                   Text('Todos os campos deven ser informados !'),));
                                               } else {
-                                                //setState(() => _loadding = true); //TODO: Ligando loadding
-                                                //setState(() => _loadding = false); //TODO: Desligando loadding
+                                                setState(() => _loadding = true); //TODO: Ligando loadding
+                                                setState(() => _loadding = false); //TODO: Desligando loadding
                                               }
                                             }
                                            // print('Em-mail: ${_emailUser.text.toString()}, senha: ${_senhaUser.text.toString()}');
 
                                             findUser(
-                                                '72105794000169',
                                                 '${_emailUser.text.toString()}',
                                                 '${_senhaUser.text.toString()}'
                                             ).then((value){
+
                                               if(value){
+                                                setState(()=> _loadding = true);
+
+                                                Future.delayed(Duration(seconds:1)).then((value) {
+                                                  setState(() => _loadding = false);
+
+                                                  Navigator.push(
+                                                      context, MaterialPageRoute(
+                                                      builder: (context) => HomePage(),
+                                                    ),
+                                                  );
+                                                  }
+                                                );
+
                                                 ScaffoldMessenger.of(context).showSnackBar(
-                                                SnackBar(content:
-                                                Text('Login'),));
+                                                    SnackBar(content: Text('Bem-vindo ao Mestre Sistemas App'),)
+                                                );
                                               }else{
                                                 ScaffoldMessenger.of(context).showSnackBar(
                                                 SnackBar(content:
@@ -254,6 +251,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                               ),
+                              //TODO Bloco circular button
                               Expanded(
                                 flex: 1,
                                 child: Container(
