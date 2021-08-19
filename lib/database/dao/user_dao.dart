@@ -16,8 +16,8 @@ class UserDao{
 
   //TODO: Salvando um UsuarioLogin
   Future<int> save(Usuario usuario) async{
-    findUsuario().then((value) async {
-      if(value.length == 0){
+    findQuantUsuarioLogado().then((value) async {
+      if(value == 0){
 
         final Database db = await getDatabase();
         final Map<String, dynamic> userMap = Map();
@@ -35,9 +35,8 @@ class UserDao{
     return 0;
   }
 
-
-  //TODO: Buscando todos os Usuario
-  Future<List<Usuario>> findUsuario() async{
+  //TODO: Buscando o usuario logado
+  Future<Usuario> findUsuario() async{
     final Database db = await getDatabase();
     await db.query('Usuario');
     final List<Map<String, dynamic>> result = await db.rawQuery('SELECT * FROM Usuario');
@@ -51,11 +50,36 @@ class UserDao{
           row['tenantid'],
           row['token'],
       );
-
       usuarios.add(usuario);
-      //print('Usuario buscados : ${usuarios.length}');
     }
-    return usuarios;
+
+    if(usuarios.isNotEmpty){
+      Usuario returnUsuario = Usuario(usuarios[0].id, usuarios[0].nome, usuarios[0].email, usuarios[0].tenantid, usuarios[0].token);
+      //print('tipo do retorno findusuario ${returnUsuario.toString()}');
+      return returnUsuario;
+    }
+
+    return Usuario('...', '...', '...', '...', '...');
+  }
+
+  //TODO: Retornando a quantidade de usuarios cadatrados
+  Future<int> findQuantUsuarioLogado() async{
+    final Database db = await getDatabase();
+    await db.query('Usuario');
+    final List<Map<String, dynamic>> result = await db.rawQuery('SELECT * FROM Usuario');
+    final List<Usuario> usuarios = [];
+
+    for(Map<String, dynamic> row in result){
+      final Usuario usuario = Usuario(
+        row['id'],
+        row['nome'],
+        row ['email'],
+        row['tenantid'],
+        row['token'],
+      );
+      usuarios.add(usuario);
+    }
+    return usuarios.length;
   }
 
   //TODO: Deletando todos o usuario na tabela (Usuario) logado.

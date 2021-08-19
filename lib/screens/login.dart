@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:appmestre/components/loading_progress_logo_mestre.dart';
 import 'package:appmestre/http/webclient.dart';
 import 'package:appmestre/screens/home.dart';
 import 'package:connectivity/connectivity.dart';
@@ -118,7 +119,10 @@ class _LoginPageState extends State<LoginPage> {
                                   //color: Colors.indigo,
                                   child: Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 20, right: 20, top: 0),
+                                        left: 20,
+                                        right: 20,
+                                        top: 0
+                                    ),
                                     child: Column(
                                       children: [
                                         Padding(
@@ -129,29 +133,30 @@ class _LoginPageState extends State<LoginPage> {
                                                 .size
                                                 .width,
                                             child: Center(
+                                              //TODO: Text LOGIN
                                               child: Text(
                                                 'Login',
                                                 style: TextStyle(
                                                     fontSize: MediaWidth / 18,
-                                                    fontWeight: FontWeight.w500,
+                                                    fontWeight: FontWeight.w600,
                                                     color: Color.fromRGBO(3, 72, 102, 1)
                                                 ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                        //TODO: Antigo TextForm
 
+                                        //TODO: TextField E-mail
                                         Padding(
                                           padding: const EdgeInsets.only(top: 8, bottom: 3, left: 3, right: 3),
                                           child: Container(
-                                            color: Color.fromRGBO(155, 155, 155, 210),
+                                            color: Color.fromRGBO(155, 155, 155, 230),
                                             child: TextField(
                                               obscureText: false,
                                               controller: _emailUser,
                                               decoration: InputDecoration(
-                                                border: OutlineInputBorder(
-                                                ),
+                                                  border: OutlineInputBorder(
+                                                  ),
                                                  labelStyle: TextStyle(
                                                    color: Colors.black54,
                                                  ),
@@ -161,12 +166,13 @@ class _LoginPageState extends State<LoginPage> {
                                             ),
                                           ),
                                         ),
+                                        //TODO: TextField Senha
                                         Padding(
                                           padding: const EdgeInsets.only(top: 8, bottom: 3, left: 3, right: 3),
                                           child: Container(
-                                            color: Color.fromRGBO(155, 155, 155, 210),
+                                            color: Color.fromRGBO(155, 155, 155, 230),
                                             child: TextField(
-                                              obscureText: false,
+                                              obscureText: true,
                                               controller: _senhaUser,
                                               decoration: InputDecoration(
                                                 border: OutlineInputBorder(
@@ -181,6 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                                           ),
                                         ),
 
+                                        //TODO: Botão 'Enviar'
                                         GestureDetector(
                                           child: buttonSmallTitleIconColor(
                                               name: 'Entrar',
@@ -192,58 +199,57 @@ class _LoginPageState extends State<LoginPage> {
                                               corDoTexto: Colors.white
                                           ),
                                           onTap: () async {
+                                            setState(()=> _loadding = true);//TODO: Ligando o loadding
 
-
-                                            //TODO; VERIFICA SE TEM INTERNET
-                                            if(_connectionStatus == 'ConnectivityResult.none'){
-                                              AlertaConectInternet();
-                                            }else {
-                                              //TODO; VERIFICA SE TODOS OS CAMPOS ESTÃO PREECHIDOS
-                                              if (
-                                                _emailUser.text == null ||
-                                                _senhaUser.text == null ||
-                                                _emailUser.text.isEmpty ||
-                                                _emailUser.text.isEmpty)
-                                              {
-                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                  SnackBar(content:
-                                                  Text('Todos os campos deven ser informados !'),));
-                                              } else {
-                                                setState(() => _loadding = true); //TODO: Ligando loadding
-                                                setState(() => _loadding = false); //TODO: Desligando loadding
-                                              }
-                                            }
-                                           // print('Em-mail: ${_emailUser.text.toString()}, senha: ${_senhaUser.text.toString()}');
-
-                                            findUser(
-                                                '${_emailUser.text.toString()}',
-                                                '${_senhaUser.text.toString()}'
-                                            ).then((value){
-
-                                              if(value){
-                                                setState(()=> _loadding = true);
-
-                                                Future.delayed(Duration(seconds:1)).then((value) {
-                                                  setState(() => _loadding = false);
-
-                                                  Navigator.push(
-                                                      context, MaterialPageRoute(
-                                                      builder: (context) => HomePage(),
-                                                    ),
+                                            Future.delayed(Duration(seconds: 5)).then((value){
+                                              //TODO; VERIFICA SE TEM INTERNET
+                                              if(_connectionStatus == 'ConnectivityResult.none'){
+                                                AlertaConectInternet();
+                                              }else {
+                                                //TODO; VERIFICA SE TODOS OS CAMPOS ESTÃO PREECHIDOS
+                                                if (
+                                                  _emailUser.text == null ||
+                                                  _senhaUser.text == null ||
+                                                  _emailUser.text.isEmpty ||
+                                                  _emailUser.text.isEmpty)
+                                                {
+                                                  ScaffoldMessenger.of(context).showSnackBar(
+                                                      SnackBar(
+                                                        content:Text('Todos os campos deven ser informados !'),
+                                                      ),
                                                   );
-                                                  }
-                                                );
-
-                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                    SnackBar(content: Text('Bem-vindo ao Mestre Sistemas App'),)
-                                                );
-                                              }else{
-                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                SnackBar(content:
-                                                Text('E-mail ou senha invalida!'),));
+                                                 }else{
+                                                  //TODO: Verifica se os dados informados retorna algum usuario na API MESTRE
+                                                  //TODO: se sim, adiciona um usuario ao banco de dados sqlite.
+                                                  //TODO: Enviando o usuario ao homepage, já com seus dados gravados
+                                                  findUser(
+                                                      '${_emailUser.text.toString()}',
+                                                      '${_senhaUser.text.toString()}'
+                                                  ).then((value){
+                                                    if(value){
+                                                      Navigator.push(
+                                                        context, MaterialPageRoute(
+                                                          builder: (context) => HomePage(),
+                                                        ),
+                                                      );
+                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                          SnackBar(content: Text('Bem-vindo ao Mestre Sistemas App'),)
+                                                      );
+                                                      setState(() => _loadding = false);
+                                                    }else{
+                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                          SnackBar(content:
+                                                          Text('E-mail ou senha invalida!'),
+                                                          ),
+                                                      );
+                                                      setState(() => _loadding = false);
+                                                    }
+                                                  });
+                                                }
                                               }
                                             });
 
+                                           // setState(() => _loadding = false);
                                           },
                                         ),
                                       ],
@@ -297,14 +303,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ],
           ),
+          //TODO Fragmento para o evento do loadding
           Visibility(
-            child: Center(
-              child: Container(
-                height: double.maxFinite,
-                width: double.maxFinite,
-                child: Progress(),
-              ),
-            ),
+            child: loaddingMestre('Logando...'),
             visible: _loadding,
           ),
         ],

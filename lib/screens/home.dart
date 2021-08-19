@@ -1,5 +1,7 @@
 import 'package:appmestre/database/dao/user_dao.dart';
+import 'package:appmestre/modelos/usuario.dart';
 import 'package:appmestre/screens/views/drawerside.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +18,15 @@ class _homePage extends State<HomePage>{
 
   final _userDao = UserDao();
 
+  //Todo: img do home page
+  final List<String> imgList = [
+    'images/Logo_Mestre_-_Completo.png',
+    'images/logo_emporiofloriano.png',
+  ];
+
   void initState(){
     _userDao.findUsuario();
+    _userDao.findQuantUsuarioLogado();
     super.initState();
     setState(() {
     });
@@ -43,34 +52,40 @@ class _homePage extends State<HomePage>{
         ),
         body: Column(
           children: [
-            Expanded(
-                flex: 1,
-                child: Container(
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'DASHBOARD',
-                          style: TextStyle(
-                              color: Colors.black12,
-                              fontSize: MediaWidth / 10
-                          ),
-                        ),
-                        Text(
-                          'O dashboard esta vazio',
-                          style: TextStyle(
-                              color: Colors.black38,
-                              fontSize: MediaWidth / 25
-                          ),
-                        ),
-                        //TODO: Testando objectbox
-                      ],
-                    ),
+            //TODO: Bloco Slide show do homePage
+            Container(
+                width: double.infinity,
+                height: MediaWidth / 1.8,
+                //color: Colors.orange.shade100,
+                child: CarouselSlider(
+                  options: CarouselOptions(
+                    aspectRatio: 16/9,
+                    viewportFraction: 0.8,
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    reverse: false,
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enlargeCenterPage: true,
+                    scrollDirection: Axis.horizontal,
                   ),
-                )
-            )
+                  items: imgList.map((item) {
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 35, right: 35),
+                      child: Container(
+                        child: Center(
+                          child: Image.asset(
+                            item,
+                            fit: BoxFit.cover,
+                            width: 1000,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                )),
           ],
         ),
       );

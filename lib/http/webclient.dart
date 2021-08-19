@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'package:appmestre/database/dao/empresa_dao.dart';
 import 'package:appmestre/database/dao/user_dao.dart';
 import 'package:appmestre/http/intercept.dart';
+import 'package:appmestre/modelos/empresa.dart';
 import 'package:appmestre/modelos/usuario.dart';
 import 'package:http/http.dart';
 import 'package:http_interceptor/http_interceptor.dart';
@@ -13,6 +15,7 @@ Future<bool> findUser(String email, String senha) async {
 
   //TODO: Conectada com o UserDao
   final _userDao = UserDao();
+  final _empresaDao = EmpresaDao();
 
   //TODO: Retornando o interceptor do envio e o retorno do http do api
   Client client = InterceptedClient.build(interceptors: [LoggingInterceptor()]);
@@ -58,8 +61,41 @@ Future<bool> findUser(String email, String senha) async {
       validMap['usuario']['tenantId'],
       validMap['token'],
     );
-    _userDao.save(usuario);
-    _userDao.findUsuario();
+
+    //TODO Informa dados ao modelo de Empresa
+    final List<Empresa> empresas = [];
+    //TODO Percorre todas as empresas retornadas para ser adicionadas no modelo EMPRESA
+    for (int i = 0; i < validMap['empresas'].length; i++){
+      final Empresa empresa = Empresa(
+          validMap['empresas'][i]['id'],
+          validMap['empresas'][i]['nome'],
+          validMap['empresas'][i]['cpfCnpj'],
+          validMap['empresas'][i]['tenantId'],
+          validMap['empresas'][i]['padrao'] == true ? 1 : 0,
+      );
+      empresas.add(empresa);
+    }
+
+    // Empresa empresa = Empresa(
+    //   validMap['empresas']['id'],
+    //   validMap['empresas']['nome'],
+    //   validMap['empresas']['cpfCnpj'],
+    //   validMap['empresas']['tenantId'],
+    //   validMap['empresas']['padrao'] == true ? 1 : 0,
+    // );
+
+
+    //Todo Gravando no sqlite os dados recuperados pela API MESTRE
+
+      //TODO: Gravando na tabela usuario
+      _userDao.save(usuario);
+
+      //TODO: Gravando na tabela empresas
+      _empresaDao.save(empresas);
+       _empresaDao.findEmpresa();
+       _empresaDao.findNomeEmpresas();
+      _empresaDao.findEmpresaPadrao(tipo: 'nome');
+      // print('empresa: ${empresas.runtimeType}');
   }
   //TODO: Retornando o resultado do login (true ou false)
   return await authenticated;

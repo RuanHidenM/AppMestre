@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:ffi';
 
-import 'package:appmestre/components/loading_progress_logo_mestre.dart';
+import 'package:appmestre/database/dao/empresa_dao.dart';
 import 'package:appmestre/database/dao/user_dao.dart';
 import 'package:appmestre/screens/catalogo.dart';
-import 'package:appmestre/screens/detalhesdoitem.dart';
 import 'package:appmestre/screens/login.dart';
 import 'package:appmestre/screens/views/dropdown_button_empresas.dart';
 import 'package:appmestre/screens/home.dart';
@@ -21,16 +20,24 @@ class _drawerSide extends State<DrawerSide> {
   get MediaWidth => MediaQuery.of(context).size.width;
   String _connectionStatus = 'UnkNown';
   final Connectivity _connectivity = new Connectivity();
-  var nomeEmpresa;
+  var nomeUsuario;//TODO Nome do usuario
+  var emailUsuario;//TODO Email do usuario
 
   final _daoUser = UserDao();
+  final _daoEmpresa = EmpresaDao();
+  _drawerSide() {
+    _daoUser.findUsuario().then((valor) => setState(() {
+      nomeUsuario = valor.nome;
+      emailUsuario = valor.email;
+    }));
+  }
 
   void initState() {
     super.initState();
-    //TODO: Verifica o status da conecção
     setState(() {
     });
 
+    //TODO: Verifica o status da conecção
     StreamSubscription<ConnectivityResult> _connectivitySubscription;
     _connectivitySubscription = _connectivity.onConnectivityChanged.listen(
       (ConnectivityResult result) {
@@ -43,40 +50,45 @@ class _drawerSide extends State<DrawerSide> {
     );
   }
 
-  //TODO: Verifica o status da conecção
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaHeight / 2.5,
+      width: MediaWidth / 1.25,
       child: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             Container(
-              height: MediaHeight / 3.5,
+              height: MediaHeight / 3.8,
               child: DrawerHeader(
                 child: Column(
                   children: [
                     Expanded(
                       flex: 6,
-                      child: Container(
-                       // color: Colors.red,
+                      child:
+                      Container(
+                        //color: Colors.red,
                         child: Row(
                           children: [
                             //TODO BLOCO LOGO DA EMPRESA
                             Expanded(
                               flex: 4,
                               child: Container(
-                               // color: Colors.blue,
+                                // color: Colors.blue,
                                 child: Column(
                                   children: [
                                     Container(
                                       margin: const EdgeInsets.all(0.0),
                                       decoration: BoxDecoration(
-                                      // color: Colors.white,
+                                        // color: Colors.white,
                                       ),
                                       child: ClipRRect(
-                                        child: Image.asset('logo_emporiofloriano.png'),
+                                        child: GestureDetector(
+                                            child: Image.asset('logo_emporiofloriano.png'),
+                                            onTap: (){
+                                              DropdownButtonEmpresas();
+                                            },
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -91,9 +103,9 @@ class _drawerSide extends State<DrawerSide> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Ruan Heiden', style: TextStyle(color: Colors.white),),
-                                    Text('ruan.heiden@gmai.com', style: TextStyle(color: Colors.white),),
-                                    Text('104.388.799.70', style: TextStyle(color: Colors.white),),
+                                    Text('$nomeUsuario', style: TextStyle(color: Colors.white),),
+                                    Text('$emailUsuario', style: TextStyle(color: Colors.white, fontSize: 13),),
+                                   // Text('104.388.799.70', style: TextStyle(color: Colors.white),),
                                     //TODO Informativo se esta conectado a uma internet
                                     Row(
                                       mainAxisAlignment:
@@ -109,7 +121,7 @@ class _drawerSide extends State<DrawerSide> {
                                                 'ConnectivityResult.none'
                                                 ? Icons.wifi
                                                 : Icons.wifi_off,
-                                            size: MediaHeight / 55,
+                                            size: MediaHeight / 60,
                                             color: _connectionStatus !=
                                                 'ConnectivityResult.none'
                                                 ? Colors.lightGreen
@@ -127,7 +139,7 @@ class _drawerSide extends State<DrawerSide> {
                                                   ? Colors.lightGreen
                                                   : Colors.redAccent,
                                               fontSize:
-                                              MediaHeight / 58),
+                                              MediaHeight / 65),
                                         ),
                                       ],
                                     ),
@@ -141,8 +153,9 @@ class _drawerSide extends State<DrawerSide> {
                     ),
                     //TODO EMPRESA SELECIONADA
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Container(
+                        color: Colors.white10,
                         height: MediaQuery.of(context).size.height,
                         width: MediaQuery.of(context).size.width,
                             child: DropdownButtonEmpresas(),
@@ -165,6 +178,7 @@ class _drawerSide extends State<DrawerSide> {
                 ),
               ),
             ),
+            //Todo DashBoard
             ListTile(
               title: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -186,6 +200,7 @@ class _drawerSide extends State<DrawerSide> {
                     context, MaterialPageRoute(builder: (context) => HomePage()));
               },
             ),
+            //Todo: Catálogo
             ListTile(
               title: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -214,6 +229,7 @@ class _drawerSide extends State<DrawerSide> {
                 );
               },
             ),
+            //Todo: Ralatórios e comissões
             ListTile(
               title: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -235,6 +251,7 @@ class _drawerSide extends State<DrawerSide> {
                 //     MaterialPageRoute(builder: (context) => ScreenTeste()));
               },
             ),
+            //TODO: Caixa e Banco
             ListTile(
               title: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -256,6 +273,7 @@ class _drawerSide extends State<DrawerSide> {
                 //     MaterialPageRoute(builder: (context) => CaixaEBanco()));
               },
             ),
+            //TODO: Configuração
             ListTile(
               title: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -277,6 +295,7 @@ class _drawerSide extends State<DrawerSide> {
                 //     MaterialPageRoute(builder: (context) => ConfigScreen()));
               },
             ),
+            //TODO Desconectar
             ListTile(
               title: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -295,10 +314,17 @@ class _drawerSide extends State<DrawerSide> {
               ),
               onTap: () async {
                 //await Future.delayed(Duration(seconds: 3));
+                //TODO: Deletando todos os usuario.
                _daoUser.deletaUsuarioLogado();
+
+               //TODO: Deletando todas as empresas do usuario.
+               _daoEmpresa.deleteEmpresa();
+
+               //TODO: Indo para a tela de loginpage
                 Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
               },
             ),
+            //TODO Ultima sincronização
             ListTile(
               title: Container(
                 decoration: BoxDecoration(

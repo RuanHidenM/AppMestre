@@ -1,4 +1,5 @@
 import 'package:appmestre/database/dao/user_dao.dart';
+import 'package:appmestre/database/dao/empresa_dao.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -8,12 +9,20 @@ Future<Database> getDatabase() async{
   final String path = join(dbPath, 'mestre.db');
 
   //await deleteDatabase(path); // deleta a base de dados que estiver o indereço path informado
+
   return openDatabase(
     path,
     onCreate: (db, version){
+      //TODO: Criando a tabela Usuario
       db.execute(UserDao.tableSql);
+
+      //TODO: Criando a tabela Empresa
+      db.execute(EmpresaDao.tableSql);
     },
+    //TODO: Verção do db
     version: 1,
-    //onDowngrade: onDatabaseDowngradeDelete //TODO: upando a verção e deixando essa linha de comando ligada, ira deletar os dados da verção anterior
+    //TODO: upando a verção e deixando essa linha de comando ligada, ira deletar os dados da verção anterior
+    //onDowngrade: onDatabaseDowngradeDelete
   );
+
 }

@@ -21,7 +21,17 @@ loaddingMestre(String msgText){
                     CircularProgressIndicator(
                         color: Colors.orange
                     ),
-                    Text('${msgText}',style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black54),),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Text(
+                        '${msgText}',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.blueGrey,
+                          ),
+                      ),
+                    ),
                   ],
                 ),
               ),

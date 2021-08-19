@@ -1,16 +1,12 @@
 
 import 'package:appmestre/database/dao/user_dao.dart';
-import 'package:appmestre/modelos/usuario.dart';
-import 'package:appmestre/screens/catalogo.dart';
-import 'package:appmestre/screens/detalhesdoitem.dart';
 import 'package:appmestre/screens/home.dart';
 import 'package:appmestre/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'components/loading_progress_logo_mestre.dart';
 
-//TODO: Nesta tela sera verificado se á dados de usuario logado,
-//Todo assim determinando se o usuario ira ser direcionado para tela de login, ou para home page
+//TODO: Mesta tela é verificado se á dados do usuario logado
 
 void main() {
   //TODO Efeito de inicialização do App
@@ -25,8 +21,9 @@ class MyApp extends StatelessWidget {
   int usuarioLogado = 0;
   @override
   Widget build(BuildContext context) {
-    _daoUser.findUsuario().then((value) => usuarioLogado = value.length);
-
+    _daoUser.findQuantUsuarioLogado().then((value) {
+      usuarioLogado = value;
+    });
     //TODO Futurebuilder do efeito no carregamento na tela.
     return FutureBuilder(
       future: Init.instance.initialize(),
@@ -34,15 +31,13 @@ class MyApp extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return MaterialApp(home: loaddingMestre('Carregando...'));
         }else{
-
           //TODO FutureBuilder da verificação se já tem um usuario logado.
           return FutureBuilder(
-            future: _daoUser.findUsuario(),
-            builder: (context, AsyncSnapshot value){
+            future: _daoUser.findQuantUsuarioLogado(),
+            builder: (context, value){
 
-              //TODO Verifica se tem um usuario cadastrado no login
+              //TODO Verifica se tem um usuario cadastrado no login.
               if(usuarioLogado >= 1){
-
                 //TODO Se Sim, Direcionar a tela para o HomePage.
                 return MaterialApp(
                   title: 'Mestre Sistemas App',
@@ -51,9 +46,7 @@ class MyApp extends StatelessWidget {
                   ),
                   home: HomePage(),
                 );
-
                 }else{
-
                 //TODO Se Não, Direciona a tela para o Login.
                 return MaterialApp(
                   title: 'Mestre Sistemas App',
@@ -63,7 +56,6 @@ class MyApp extends StatelessWidget {
                   home: LoginPage(),
                   // home: DetalhesDoItem(),
                 );
-
               }
             }
           );
