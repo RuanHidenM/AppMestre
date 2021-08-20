@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'dart:ffi';
-
 import 'package:appmestre/database/dao/empresa_dao.dart';
 import 'package:appmestre/database/dao/user_dao.dart';
+import 'package:appmestre/http/http_pessoa.dart';
 import 'package:appmestre/screens/catalogo.dart';
 import 'package:appmestre/screens/login.dart';
 import 'package:appmestre/screens/views/dropdown_button_empresas.dart';
@@ -22,6 +21,10 @@ class _drawerSide extends State<DrawerSide> {
   final Connectivity _connectivity = new Connectivity();
   var nomeUsuario;//TODO Nome do usuario
   var emailUsuario;//TODO Email do usuario
+
+
+
+  final _pessoaDao = httpPessoa();
 
   final _daoUser = UserDao();
   final _daoEmpresa = EmpresaDao();
@@ -281,16 +284,18 @@ class _drawerSide extends State<DrawerSide> {
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.settings,
-                        color: Colors.black54, size: MediaHeight / 22),
+                        color: Colors.red, size: MediaHeight / 22),
                   ),
                   Text(
                     'Configurações',
                     style: TextStyle(
                         color: Colors.black54, fontSize: MediaHeight / 40),
+
                   ),
                 ],
               ),
               onTap: () {
+                _pessoaDao.findUsuario();
                 // Navigator.push(context,
                 //     MaterialPageRoute(builder: (context) => ConfigScreen()));
               },

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:appmestre/components/loading_progress_logo_mestre.dart';
-import 'package:appmestre/http/webclient.dart';
+import 'package:appmestre/http/http_user_auth.dart';
 import 'package:appmestre/screens/home.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   final Connectivity _connectivity = new Connectivity();
   get MediaWidth => MediaQuery.of(context).size.width;
   String connectionStatus = '';
+  final _webClientUser = httpUserAuth();
 
   @override
   void initState() {
@@ -222,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
                                                   //TODO: Verifica se os dados informados retorna algum usuario na API MESTRE
                                                   //TODO: se sim, adiciona um usuario ao banco de dados sqlite.
                                                   //TODO: Enviando o usuario ao homepage, já com seus dados gravados
-                                                  findUser(
+                                                  _webClientUser.findUser(
                                                       '${_emailUser.text.toString()}',
                                                       '${_senhaUser.text.toString()}'
                                                   ).then((value){
@@ -272,22 +273,26 @@ class _LoginPageState extends State<LoginPage> {
                                             corDobotao:
                                             Color.fromRGBO(36, 82, 108, 1),
                                             iconDoBotao: Icons.web,
-                                            corDoIcon: Colors.white),
+                                            corDoIcon: Colors.white,
+                                        ),
                                         circularButtonMediunTitleColorIcon(
                                             corDobotao:
                                             Color.fromRGBO(36, 82, 108, 1),
                                             iconDoBotao: Icons.message,
-                                            corDoIcon: Colors.white),
+                                            corDoIcon: Colors.white,
+                                        ),
                                         circularButtonMediunTitleColorIcon(
                                             corDobotao:
                                             Color.fromRGBO(36, 82, 108, 1),
                                             iconDoBotao: Icons.vpn_key_outlined,
-                                            corDoIcon: Colors.white),
+                                            corDoIcon: Colors.white,
+                                        ),
                                         circularButtonMediunTitleColorIcon(
                                             corDobotao:
                                             Color.fromRGBO(36, 82, 108, 1),
                                             iconDoBotao: Icons.create,
-                                            corDoIcon: Colors.white),
+                                            corDoIcon: Colors.white,
+                                        ),
                                       ],
                                     ),
                                   ),

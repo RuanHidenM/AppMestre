@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 //TODO Bloco card do produto
 CardProduto (mediaWidth){
   return Column(
@@ -131,7 +130,6 @@ CardProduto (mediaWidth){
         ),
         onDoubleTap: () {},
       ),
-
     ],
   );
 }

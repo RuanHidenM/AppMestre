@@ -8,8 +8,6 @@ Future<Database> getDatabase() async{
   final String dbPath = await getDatabasesPath();
   final String path = join(dbPath, 'mestre.db');
 
-  //await deleteDatabase(path); // deleta a base de dados que estiver o indereço path informado
-
   return openDatabase(
     path,
     onCreate: (db, version){

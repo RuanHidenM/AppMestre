@@ -1,5 +1,4 @@
 import 'package:appmestre/database/dao/user_dao.dart';
-import 'package:appmestre/modelos/usuario.dart';
 import 'package:appmestre/screens/views/drawerside.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,7 +14,6 @@ class _homePage extends State<HomePage>{
   String EmailIdentificado = '';
   var resultado;
   var userLogadoEmail;
-
   final _userDao = UserDao();
 
   //Todo: img do home page
@@ -28,8 +26,7 @@ class _homePage extends State<HomePage>{
     _userDao.findUsuario();
     _userDao.findQuantUsuarioLogado();
     super.initState();
-    setState(() {
-    });
+    setState(() {});
   }
 
   @override
