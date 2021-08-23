@@ -14,10 +14,10 @@ class LoggingInterceptor implements InterceptorContract {
   @override
   //TODO: Retornando mais detalhes sobre o recebimento do http
   Future<ResponseData> interceptResponse({required ResponseData data}) async {
-     // print('Response');
-     // print('Headers: ${data.headers}');
-     // print('Status code: ${data.statusCode}');
-     // print('Body: ${data.body}');
+    // print('Response');
+    // print('Headers: ${data.headers}');
+    // print('Status code: ${data.statusCode}');
+    // print('Body: ${data.body}');
     return data;
   }
 }

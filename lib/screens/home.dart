@@ -1,4 +1,5 @@
 import 'package:appmestre/database/dao/user_dao.dart';
+import 'package:appmestre/http/http_verifica_token.dart';
 import 'package:appmestre/screens/views/drawerside.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,6 +17,7 @@ class _homePage extends State<HomePage>{
   var userLogadoEmail;
   final _userDao = UserDao();
 
+
   //Todo: img do home page
   final List<String> imgList = [
     'images/Logo_Mestre_-_Completo.png',
@@ -23,10 +25,10 @@ class _homePage extends State<HomePage>{
   ];
 
   void initState(){
-    _userDao.findUsuario();
-    _userDao.findQuantUsuarioLogado();
     super.initState();
-    setState(() {});
+    setState(() {
+
+    });
   }
 
   @override
@@ -89,10 +91,3 @@ class _homePage extends State<HomePage>{
   }
 }
 
-class GraficoCaixaEBanco{
-  String nomeCaixaEBanco;
-  double taskvalue;
-  Color colorva1;
-
-  GraficoCaixaEBanco(this.nomeCaixaEBanco, this.taskvalue, this.colorva1);
-}

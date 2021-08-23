@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:appmestre/components/loading_progress_logo_mestre.dart';
 import 'package:appmestre/http/http_user_auth.dart';
+import 'package:appmestre/http/http_verifica_token.dart';
 import 'package:appmestre/screens/home.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   get MediaWidth => MediaQuery.of(context).size.width;
   String connectionStatus = '';
   final _webClientUser = httpUserAuth();
+
 
   @override
   void initState() {

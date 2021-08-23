@@ -6,7 +6,6 @@ import 'package:appmestre/modelos/empresa.dart';
 import 'package:appmestre/modelos/usuario.dart';
 import 'package:http/http.dart';
 import 'package:http_interceptor/http_interceptor.dart';
-import 'package:path/path.dart';
 
 class httpUserAuth{
   //TODO: Retornando o interceptor do envio e o retorno do http do api
@@ -37,8 +36,6 @@ class httpUserAuth{
     //TODO: O envio de fato
     final Response responsePost =
     await client.post(urlAuth, body: body, headers: headers);
-
-    print('statusCode auth: ${responsePost.statusCode}');
 
     //TODO recebendo os dados
     final validMap = json.decode(
@@ -79,17 +76,6 @@ class httpUserAuth{
         empresas.add(empresa);
       }
 
-      // Empresa empresa = Empresa(
-      //   validMap['empresas']['id'],
-      //   validMap['empresas']['nome'],
-      //   validMap['empresas']['cpfCnpj'],
-      //   validMap['empresas']['tenantId'],
-      //   validMap['empresas']['padrao'] == true ? 1 : 0,
-      // );
-
-
-      //Todo Gravando no sqlite os dados recuperados pela API MESTRE
-
       //TODO: Gravando na tabela usuario
       _userDao.save(usuario);
 
@@ -103,18 +89,5 @@ class httpUserAuth{
     //TODO: Retornando o resultado do login (true ou false)
     return await authenticated;
   }
-
-  void save(){
-    client.post(
-        urlAuth, headers: {
-        'Content-type' : 'application/json'
-      },
-      body:{
-        "email": "admin@mestresistemas.com.br",
-        "senha": "admin.*"
-      }
-    );
-  }
-
 }
 

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:appmestre/database/dao/empresa_dao.dart';
 import 'package:appmestre/database/dao/user_dao.dart';
-import 'package:appmestre/http/http_pessoa.dart';
+import 'package:appmestre/http/http_verifica_token.dart';
 import 'package:appmestre/screens/catalogo.dart';
 import 'package:appmestre/screens/login.dart';
 import 'package:appmestre/screens/views/dropdown_button_empresas.dart';
@@ -22,17 +22,35 @@ class _drawerSide extends State<DrawerSide> {
   var nomeUsuario;//TODO Nome do usuario
   var emailUsuario;//TODO Email do usuario
 
-
-
-  final _pessoaDao = httpPessoa();
-
   final _daoUser = UserDao();
   final _daoEmpresa = EmpresaDao();
+
+
   _drawerSide() {
-    _daoUser.findUsuario().then((valor) => setState(() {
-      nomeUsuario = valor.nome;
-      emailUsuario = valor.email;
-    }));
+    //TODO verifica token
+    VerificaTokenUser().then((value){
+      if(value == false){
+        //TODO: Deletando todos os usuario.
+        _daoUser.deletaUsuarioLogado();
+
+        //TODO: Deletando todas as empresas do usuario.
+        _daoEmpresa.deleteEmpresa();
+
+        //TODO: Indo para a tela de loginpage
+        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+
+        //TODO: MSG de usuario desconectado
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('A sessão de autenticada expirou. '),)
+        );
+      }
+      });
+
+      //TODO: Dados do usuario logado
+      _daoUser.findUsuario().then((valor) => setState(() {
+        nomeUsuario = valor.nome;
+        emailUsuario = valor.email;
+      }));
   }
 
   void initState() {
@@ -51,6 +69,8 @@ class _drawerSide extends State<DrawerSide> {
         }
       },
     );
+
+
   }
 
   @override
@@ -284,20 +304,18 @@ class _drawerSide extends State<DrawerSide> {
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.settings,
-                        color: Colors.red, size: MediaHeight / 22),
+                        color: Colors.black54, size: MediaHeight / 22),
                   ),
                   Text(
                     'Configurações',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaHeight / 40),
-
+                        color: Colors.black54,
+                        fontSize: MediaHeight / 40
+                    ),
                   ),
                 ],
               ),
               onTap: () {
-                _pessoaDao.findUsuario();
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => ConfigScreen()));
               },
             ),
             //TODO Desconectar
@@ -318,7 +336,7 @@ class _drawerSide extends State<DrawerSide> {
                 ],
               ),
               onTap: () async {
-                //await Future.delayed(Duration(seconds: 3));
+
                 //TODO: Deletando todos os usuario.
                _daoUser.deletaUsuarioLogado();
 
@@ -327,6 +345,28 @@ class _drawerSide extends State<DrawerSide> {
 
                //TODO: Indo para a tela de loginpage
                 Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+
+              },
+            ),
+            //TODO token
+            ListTile(
+              title: Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 0, right: 10),
+                    child: Icon(Icons.vpn_key_outlined,
+                        color: Colors.black54, size: MediaHeight / 22),
+                  ),
+                  Text(
+                    'Verificar token',
+                    style: TextStyle(
+                        color: Colors.black54, fontSize: MediaHeight / 40),
+                  ),
+                ],
+              ),
+              onTap: () async {
+                VerificaTokenUser();
               },
             ),
             //TODO Ultima sincronização
@@ -378,3 +418,7 @@ class _drawerSide extends State<DrawerSide> {
     );
   }
 }
+
+
+
+
