@@ -73,7 +73,7 @@ class _dropdownButtonEmpresas extends State<DropdownButtonEmpresas> {
                       overflow: TextOverflow.fade,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: MediaHeight / 43,
+                        fontSize: MediaWidth / 22,
                       ),
                     ),
 

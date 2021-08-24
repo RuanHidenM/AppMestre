@@ -1,5 +1,6 @@
 
 import 'package:appmestre/database/dao/user_dao.dart';
+import 'package:appmestre/screens/detalhesdoitem.dart';
 import 'package:appmestre/screens/home.dart';
 import 'package:appmestre/screens/login.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
                     primarySwatch: Colors.blueGrey,//TODO: Cor do app
                   ),
                   home: LoginPage(),
-                  // home: DetalhesDoItem(),
+                  //home: DetalhesDoItem(),
                 );
               }
             }

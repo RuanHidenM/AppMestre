@@ -19,7 +19,6 @@ class EmpresaDao {
 
       final Database db = await getDatabase();
       final Map<String, dynamic> empresaMap = Map();
-
       empresaMap['id'] = empresa[i].id;
       empresaMap['nome'] = empresa[i].nome;
       empresaMap['cpfcnpj'] = empresa[i].cpfCnpj;

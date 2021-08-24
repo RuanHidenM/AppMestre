@@ -13,6 +13,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
   var items =  ['Tabela avulsos','Banana','Grapes','Orange','watermelon','Pineapple'];
   bool produtoativo = true;//TODO: Estado do produto, ativo = true ou desativo = false !
   bool produtoFavorito = false; //TODO: Estado do favorito do produto, ativo = true ou desativo = false !
+
   final List<String> imgList = [
     'images/cap.png',
     'images/comp-live.png',
@@ -24,28 +25,12 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Center(child: Text('Computador Live ZE INTEL', style: TextStyle(fontWeight: FontWeight.w700),)),
+          title: Center(child: Text('Computador Live ZE INTEL    ', style: TextStyle(fontWeight: FontWeight.w700),)),
           backgroundColor: Color.fromRGBO(36, 82, 108, 55),
         ),
         body: SingleChildScrollView(
           child: Column(
               children: [
-                //TODO: Bloco Title do Produto.
-                // Container(
-                //   width: double.infinity,
-                //   height: MediaWidth / 10,
-                //   //color: Colors.black12,
-                //   child: Center(
-                //     child: Text(
-                //       'Computador Live ZE INTEL',
-                //       style: TextStyle(
-                //           fontSize: MediaWidth / 19,
-                //           color: Colors.black87,
-                //           fontWeight: FontWeight.w400),
-                //     ),
-                //   ),
-                // ),
-
                 //TODO: Bloco codigo do produto e favorito.
                 Container(
                   padding: EdgeInsets.only(left: 15, right: 15, top: 15),
@@ -82,7 +67,6 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                         },
                       )
                       :
-
                       //TODO: Estrela de favorito (desativo)
                       GestureDetector(
                         child: Icon(

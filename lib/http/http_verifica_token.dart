@@ -8,13 +8,12 @@ import 'package:http_interceptor/http/intercepted_client.dart';
 
 Future<bool> VerificaTokenUser() async{
   final _userDao = UserDao();
-  final _empresaDao = EmpresaDao();
 
   //TODO: Retorno o interceptor do envio e o retorno do http do api
   Client client = InterceptedClient.build(interceptors: [LoggingInterceptor()]);
 
   //TODO: URL da API MESTRE /pessoa
-  var urlAuth = Uri.parse('http://10.0.2.2:5000/v1/pessoa');
+  var urlAuth = Uri.parse('https://api.mestreceo.com/v1/pessoa');
 
   //TODO: Pegando o token do usuario logado
   var bearer = await _userDao.findUsuario().then((value) => value.token);

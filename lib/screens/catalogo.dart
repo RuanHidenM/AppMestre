@@ -20,7 +20,7 @@ class _catalogo extends State<Catalogo> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
 
-        endDrawer: drawerFiltroCatalogo(MediaWidth),
+        endDrawer: drawerFiltroCatalogo(),
         appBar: AppBar(
           //TODO: Botão de returno
           leading: IconButton(
@@ -31,7 +31,7 @@ class _catalogo extends State<Catalogo> {
           title: const Text('Catalogo'),
           backgroundColor: Color.fromRGBO(36, 82, 108, 55),
         ),
-        body: CardProduto(MediaWidth),
+        body: CardProduto(context, MediaWidth),
       ),
     );
   }

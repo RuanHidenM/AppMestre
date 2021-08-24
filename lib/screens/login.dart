@@ -181,7 +181,7 @@ class _LoginPageState extends State<LoginPage> {
                                                 border: OutlineInputBorder(
                                                 ),
                                                 labelStyle: TextStyle(
-                                                    fontSize: MediaWidth / 22
+                                                  color: Colors.black54,
                                                 ),
                                                 labelText: 'Senha',
                                                 //errorText: _verificaNomeEmpty ? 'Este campo é obrigatório' : null,

@@ -41,7 +41,9 @@ class _drawerSide extends State<DrawerSide> {
 
         //TODO: MSG de usuario desconectado
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('A sessão de autenticada expirou. '),)
+            SnackBar(
+              content: Text('A sessão de autenticada expirou.'),
+            ),
         );
       }
       });
@@ -69,8 +71,6 @@ class _drawerSide extends State<DrawerSide> {
         }
       },
     );
-
-
   }
 
   @override
@@ -97,7 +97,8 @@ class _drawerSide extends State<DrawerSide> {
                             Expanded(
                               flex: 4,
                               child: Container(
-                                // color: Colors.blue,
+                               // color: Colors.blue,
+                                height: MediaHeight / 3,
                                 child: Column(
                                   children: [
                                     Container(
@@ -107,7 +108,7 @@ class _drawerSide extends State<DrawerSide> {
                                       ),
                                       child: ClipRRect(
                                         child: GestureDetector(
-                                            child: Image.asset('logo_emporiofloriano.png'),
+                                            child: Image.asset('logo_emporiofloriano.png', height: MediaWidth / 4.5 ,),
                                             onTap: (){
                                               DropdownButtonEmpresas();
                                             },
@@ -209,18 +210,18 @@ class _drawerSide extends State<DrawerSide> {
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.apps,
-                        color: Colors.black54, size: MediaHeight / 22),
+                        color: Colors.black54, size: MediaWidth / 14),
                   ),
                   Text(
                     'Dashboard',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaHeight / 40),
+                        color: Colors.black54, fontSize: MediaWidth / 20),
                   ),
                 ],
               ),
-              onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => HomePage()));
+              onTap: () {    Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
+
               },
             ),
             //Todo: Catálogo
@@ -233,13 +234,13 @@ class _drawerSide extends State<DrawerSide> {
                     child: Icon(
                         Icons.view_list,
                         color: Colors.black54,
-                        size: MediaHeight / 22
+                        size: MediaWidth / 14
                     ),
                   ),
                   Text(
                     'Catálogo',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaHeight / 40
+                        color: Colors.black54, fontSize: MediaWidth / 20
                     ),
                   ),
                 ],
@@ -260,12 +261,12 @@ class _drawerSide extends State<DrawerSide> {
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.bar_chart_sharp,
-                        color: Colors.black54, size: MediaHeight / 22),
+                        color: Colors.black54, size: MediaWidth / 14),
                   ),
                   Text(
                     'Relatórios e comissões',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaHeight / 40),
+                        color: Colors.black54, fontSize: MediaWidth / 20),
                   ),
                 ],
               ),
@@ -282,12 +283,12 @@ class _drawerSide extends State<DrawerSide> {
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.monetization_on,
-                        color: Colors.black54, size: MediaHeight / 22),
+                        color: Colors.black54, size: MediaWidth  / 14),
                   ),
                   Text(
                     'Caixas e Bancos',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaHeight / 40),
+                        color: Colors.black54, fontSize: MediaWidth  / 20),
                   ),
                 ],
               ),
@@ -304,13 +305,13 @@ class _drawerSide extends State<DrawerSide> {
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.settings,
-                        color: Colors.black54, size: MediaHeight / 22),
+                        color: Colors.black54, size: MediaWidth  / 14),
                   ),
                   Text(
                     'Configurações',
                     style: TextStyle(
                         color: Colors.black54,
-                        fontSize: MediaHeight / 40
+                        fontSize: MediaWidth  / 20
                     ),
                   ),
                 ],
@@ -326,12 +327,12 @@ class _drawerSide extends State<DrawerSide> {
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.logout,
-                        color: Colors.black54, size: MediaHeight / 22),
+                        color: Colors.black54, size: MediaWidth  / 14),
                   ),
                   Text(
                     'Desconectar',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaHeight / 40),
+                        color: Colors.black54, fontSize: MediaWidth  / 20),
                   ),
                 ],
               ),
@@ -356,12 +357,12 @@ class _drawerSide extends State<DrawerSide> {
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.vpn_key_outlined,
-                        color: Colors.black54, size: MediaHeight / 22),
+                        color: Colors.black54, size: MediaWidth  / 14),
                   ),
                   Text(
                     'Verificar token',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaHeight / 40),
+                        color: Colors.black54, fontSize: MediaWidth  / 20),
                   ),
                 ],
               ),
@@ -388,7 +389,7 @@ class _drawerSide extends State<DrawerSide> {
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 20),
                         child: Icon(Icons.autorenew,
-                            color: Colors.black26, size: MediaHeight / 22),
+                            color: Colors.black26, size: MediaWidth  / 14),
                       ),
                       Column(
                         children: [
@@ -396,7 +397,7 @@ class _drawerSide extends State<DrawerSide> {
                             'Ultima sincronização: ',
                             style: TextStyle(
                                 color: Colors.black26,
-                                fontSize: MediaHeight / 40),
+                                fontSize: MediaWidth / 20),
                           ),
                           Text(
                             '01/05/2021',

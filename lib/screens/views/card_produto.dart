@@ -1,7 +1,9 @@
+import 'package:appmestre/screens/detalhesdoitem.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 //TODO Bloco card do produto
-CardProduto (mediaWidth){
+CardProduto (context, mediaWidth){
   return Column(
     children: [
       GestureDetector(
@@ -128,7 +130,10 @@ CardProduto (mediaWidth){
             ),
           ),
         ),
-        onDoubleTap: () {},
+        onDoubleTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => DetalhesDoItem()));
+        },
       ),
     ],
   );

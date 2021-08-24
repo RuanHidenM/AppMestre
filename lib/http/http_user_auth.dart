@@ -12,7 +12,7 @@ class httpUserAuth{
   Client client = InterceptedClient.build(interceptors: [LoggingInterceptor()]);
 
   //TODO URL da API MESTRE
-  var urlAuth = Uri.parse('http://10.0.2.2:5000/v1/auth');
+  var urlAuth = Uri.parse('https://api.mestreceo.com/v1/auth');
 
   //TODO: Conectada com o UserDao
   final _userDao = UserDao();
@@ -80,6 +80,7 @@ class httpUserAuth{
       _userDao.save(usuario);
 
       //TODO: Gravando na tabela empresas
+      _empresaDao;
       _empresaDao.save(empresas);
       _empresaDao.findEmpresa();
       _empresaDao.findNomeEmpresas();

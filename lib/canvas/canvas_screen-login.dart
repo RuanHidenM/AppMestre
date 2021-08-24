@@ -72,7 +72,7 @@ class BackgroundSignInDetahlesDoProduto extends CustomPainter {
         sw * 0.19,
         sh * 1.04,
         0,
-        sh * 0.75
+        sh * 0.74
     );
     orangeWave.close();
     orangeWave.close();
@@ -110,7 +110,7 @@ class BackgroundSignInDetahlesDoProduto extends CustomPainter {
     );
     whiteWave.close();
     //paint.color = Color.fromRGBO(36,82,108,1);
-    paint.color = Color.fromRGBO(36, 82, 108, 22);
+   // paint.color = Color.fromRGBO(36, 82, 108, 22);
     canvas.drawPath(whiteWave, paint);
   }
 
