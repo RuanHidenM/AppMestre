@@ -1,10 +1,8 @@
 import 'package:appmestre/database/dao/user_dao.dart';
-import 'package:appmestre/http/http_verifica_token.dart';
 import 'package:appmestre/screens/views/drawerside.dart';
 import 'package:appmestre/screens/views/home_atalhos.dart';
 import 'package:appmestre/screens/views/home_dashboard.dart';
 import 'package:appmestre/screens/views/home_home.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,19 +18,13 @@ class _homePage extends State<HomePage>{
   var userLogadoEmail;
   final _userDao = UserDao();
 
-
-
-
   void initState(){
     super.initState();
     setState(() {
-
     });
   }
-
   @override
   Widget build(BuildContext context) {
-
       return MaterialApp(
         home: DefaultTabController(
           length: 3,

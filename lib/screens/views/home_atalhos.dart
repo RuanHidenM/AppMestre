@@ -9,5 +9,4 @@ class _atalhoHome extends State<atalhoHome>{
   Widget build(BuildContext context) {
     return Center(child: Text('Atalho page'),);
   }
-
 }

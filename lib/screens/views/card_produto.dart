@@ -1,6 +1,5 @@
 import 'package:appmestre/screens/detalhesdoitem.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 
 //TODO Bloco card do produto
 CardProduto (context, mediaWidth){
@@ -33,17 +32,21 @@ CardProduto (context, mediaWidth){
                     children: [
                       //TODO: Bloco IMG do Produto
                       Expanded(
-                        flex: 3,
-                        child: Icon(
-                          Icons.image_not_supported_outlined,
-                          color: Colors.black12,
-                          size: mediaWidth / 5,
+                        flex: 5,
+                        // child: Icon(
+                        //   Icons.image_not_supported_outlined,
+                        //   color: Colors.black12,
+                        //   size: mediaWidth / 5,
+                        // ),
+                        child: Container(
+                         // color: Colors.blue,
+                            child: Image.asset('images/note-acer.png')
                         ),
                       ),
 
                       //TODO info do produto
                       Expanded(
-                        flex: 7,
+                        flex: 8,
                         child: Padding(
                           padding: const EdgeInsets.all(5),
                           child: Container(
@@ -62,6 +65,7 @@ CardProduto (context, mediaWidth){
                                       const EdgeInsets.only(bottom: 9.0),
                                       child: Text(
                                         'Nome do Produto',
+                                        //'Essa é uma descrição grande do produto, fim é bem grande mesmo',
                                         overflow: TextOverflow.fade,
                                         // overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
@@ -132,7 +136,10 @@ CardProduto (context, mediaWidth){
         ),
         onDoubleTap: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => DetalhesDoItem()));
+            context, MaterialPageRoute(
+              builder: (context) => DetalhesDoItem(),
+            ),
+          );
         },
       ),
     ],

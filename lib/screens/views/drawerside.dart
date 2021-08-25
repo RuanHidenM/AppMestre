@@ -10,26 +10,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:connectivity/connectivity.dart';
 
+import '../caixa_banco.dart';
+
 class DrawerSide extends StatefulWidget {
   _drawerSide createState() => _drawerSide();
 }
 
 class _drawerSide extends State<DrawerSide> {
   get MediaHeight => MediaQuery.of(context).size.height;
+
   get MediaWidth => MediaQuery.of(context).size.width;
   String _connectionStatus = 'UnkNown';
   final Connectivity _connectivity = new Connectivity();
-  var nomeUsuario;//TODO Nome do usuario
-  var emailUsuario;//TODO Email do usuario
+  var nomeUsuario; //TODO Nome do usuario
+  var emailUsuario; //TODO Email do usuario
 
   final _daoUser = UserDao();
   final _daoEmpresa = EmpresaDao();
 
-
   _drawerSide() {
     //TODO verifica token
-    VerificaTokenUser().then((value){
-      if(value == false){
+    VerificaTokenUser().then((value) {
+      if (value == false) {
         //TODO: Deletando todos os usuario.
         _daoUser.deletaUsuarioLogado();
 
@@ -37,28 +39,28 @@ class _drawerSide extends State<DrawerSide> {
         _daoEmpresa.deleteEmpresa();
 
         //TODO: Indo para a tela de loginpage
-        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginPage()));
 
         //TODO: MSG de usuario desconectado
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('A sessão de autenticada expirou.'),
-            ),
+          SnackBar(
+            content: Text('A sessão de autenticada expirou.'),
+          ),
         );
       }
-      });
+    });
 
-      //TODO: Dados do usuario logado
-      _daoUser.findUsuario().then((valor) => setState(() {
-        nomeUsuario = valor.nome;
-        emailUsuario = valor.email;
-      }));
+    //TODO: Dados do usuario logado
+    _daoUser.findUsuario().then((valor) => setState(() {
+          nomeUsuario = valor.nome;
+          emailUsuario = valor.email;
+        }));
   }
 
   void initState() {
     super.initState();
-    setState(() {
-    });
+    setState(() {});
 
     //TODO: Verifica o status da conecção
     StreamSubscription<ConnectivityResult> _connectivitySubscription;
@@ -88,8 +90,7 @@ class _drawerSide extends State<DrawerSide> {
                   children: [
                     Expanded(
                       flex: 6,
-                      child:
-                      Container(
+                      child: Container(
                         //color: Colors.red,
                         child: Row(
                           children: [
@@ -97,21 +98,24 @@ class _drawerSide extends State<DrawerSide> {
                             Expanded(
                               flex: 4,
                               child: Container(
-                               // color: Colors.blue,
+                                // color: Colors.blue,
                                 height: MediaHeight / 3,
                                 child: Column(
                                   children: [
                                     Container(
                                       margin: const EdgeInsets.all(0.0),
                                       decoration: BoxDecoration(
-                                        // color: Colors.white,
-                                      ),
+                                          // color: Colors.white,
+                                          ),
                                       child: ClipRRect(
                                         child: GestureDetector(
-                                            child: Image.asset('logo_emporiofloriano.png', height: MediaWidth / 4.5 ,),
-                                            onTap: (){
-                                              DropdownButtonEmpresas();
-                                            },
+                                          child: Image.asset(
+                                            'logo_emporiofloriano.png',
+                                            height: MediaWidth / 4.5,
+                                          ),
+                                          onTap: () {
+                                            DropdownButtonEmpresas();
+                                          },
                                         ),
                                       ),
                                     ),
@@ -122,48 +126,53 @@ class _drawerSide extends State<DrawerSide> {
                             //TODO: BLOCO INFO DO USER LOGADO
                             Expanded(
                               flex: 5,
-                              child:Container(
-                                padding: EdgeInsets.only(top:6),
+                              child: Container(
+                                padding: EdgeInsets.only(top: 6),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('$nomeUsuario', style: TextStyle(color: Colors.white),),
-                                    Text('$emailUsuario', style: TextStyle(color: Colors.white, fontSize: 13),),
-                                   // Text('104.388.799.70', style: TextStyle(color: Colors.white),),
+                                    Text(
+                                      '$nomeUsuario',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    Text(
+                                      '$emailUsuario',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 13),
+                                    ),
+                                    // Text('104.388.799.70', style: TextStyle(color: Colors.white),),
                                     //TODO Informativo se esta conectado a uma internet
                                     Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                          MainAxisAlignment.start,
                                       children: [
                                         //TODO: CONECT
                                         Padding(
                                           padding:
-                                          const EdgeInsets.only(
-                                              right: 5),
+                                              const EdgeInsets.only(right: 5),
                                           child: Icon(
                                             _connectionStatus !=
-                                                'ConnectivityResult.none'
+                                                    'ConnectivityResult.none'
                                                 ? Icons.wifi
                                                 : Icons.wifi_off,
                                             size: MediaHeight / 60,
                                             color: _connectionStatus !=
-                                                'ConnectivityResult.none'
+                                                    'ConnectivityResult.none'
                                                 ? Colors.lightGreen
                                                 : Colors.redAccent,
                                           ),
                                         ),
                                         Text(
                                           _connectionStatus !=
-                                              'ConnectivityResult.none'
+                                                  'ConnectivityResult.none'
                                               ? 'Conectado'
                                               : 'Desconectado',
                                           style: TextStyle(
                                               color: _connectionStatus !=
-                                                  'ConnectivityResult.none'
+                                                      'ConnectivityResult.none'
                                                   ? Colors.lightGreen
                                                   : Colors.redAccent,
-                                              fontSize:
-                                              MediaHeight / 65),
+                                              fontSize: MediaHeight / 65),
                                         ),
                                       ],
                                     ),
@@ -182,7 +191,7 @@ class _drawerSide extends State<DrawerSide> {
                         color: Colors.white10,
                         height: MediaQuery.of(context).size.height,
                         width: MediaQuery.of(context).size.width,
-                            child: DropdownButtonEmpresas(),
+                        child: DropdownButtonEmpresas(),
                       ),
                     )
                   ],
@@ -197,9 +206,8 @@ class _drawerSide extends State<DrawerSide> {
                   colors: [
                     Color.fromRGBO(36, 82, 108, 1),
                     Color.fromRGBO(36, 82, 108, 100),
-                    ],
-                  )
-                ),
+                  ],
+                )),
               ),
             ),
             //Todo DashBoard
@@ -219,54 +227,54 @@ class _drawerSide extends State<DrawerSide> {
                   ),
                 ],
               ),
-              onTap: () {    Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
-
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
               },
             ),
             //Todo: Catálogo
             ListTile(
               title: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
-                    child: Icon(
-                        Icons.view_list,
-                        color: Colors.black54,
-                        size: MediaWidth / 14
-                    ),
+                    child: Icon(Icons.view_list,
+                        color: Colors.black54, size: MediaWidth / 14),
                   ),
                   Text(
                     'Catálogo',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaWidth / 20
+                      color: Colors.black54,
+                      fontSize: MediaWidth / 20,
                     ),
                   ),
                 ],
               ),
               onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(
-                    builder: (context) => Catalogo()
-                  )
-                );
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Catalogo()));
               },
             ),
             //Todo: Ralatórios e comissões
             ListTile(
               title: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
-                    child: Icon(Icons.bar_chart_sharp,
-                        color: Colors.black54, size: MediaWidth / 14),
+                    child: Icon(
+                      Icons.bar_chart_sharp,
+                      color: Colors.black54,
+                      size: MediaWidth / 14,
+                    ),
                   ),
                   Text(
                     'Relatórios e comissões',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaWidth / 20),
+                      color: Colors.black54,
+                      fontSize: MediaWidth / 20,
+                    ),
                   ),
                 ],
               ),
@@ -278,75 +286,84 @@ class _drawerSide extends State<DrawerSide> {
             //TODO: Caixa e Banco
             ListTile(
               title: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.monetization_on,
-                        color: Colors.black54, size: MediaWidth  / 14),
+                        color: Colors.black54, size: MediaWidth / 14),
                   ),
                   Text(
                     'Caixas e Bancos',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaWidth  / 20),
-                  ),
-                ],
-              ),
-              onTap: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => CaixaEBanco()));
-              },
-            ),
-            //TODO: Configuração
-            ListTile(
-              title: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 0, right: 10),
-                    child: Icon(Icons.settings,
-                        color: Colors.black54, size: MediaWidth  / 14),
-                  ),
-                  Text(
-                    'Configurações',
-                    style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: MediaWidth  / 20
+                      color: Colors.black54,
+                      fontSize: MediaWidth / 20,
                     ),
                   ),
                 ],
               ),
               onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CaixaBanco(),
+                  ),
+                );
               },
+            ),
+            //TODO: Configuração
+            ListTile(
+              title: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 0, right: 10),
+                    child: Icon(
+                      Icons.settings,
+                      color: Colors.black54,
+                      size: MediaWidth / 14,
+                    ),
+                  ),
+                  Text(
+                    'Configurações',
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: MediaWidth / 20,
+                    ),
+                  ),
+                ],
+              ),
+              onTap: () {},
             ),
             //TODO Desconectar
             ListTile(
               title: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
-                    child: Icon(Icons.logout,
-                        color: Colors.black54, size: MediaWidth  / 14),
+                    child: Icon(
+                      Icons.logout,
+                      color: Colors.black54,
+                      size: MediaWidth / 14,
+                    ),
                   ),
                   Text(
                     'Desconectar',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaWidth  / 20),
+                      color: Colors.black54,
+                      fontSize: MediaWidth / 20,
+                    ),
                   ),
                 ],
               ),
               onTap: () async {
-
                 //TODO: Deletando todos os usuario.
-               _daoUser.deletaUsuarioLogado();
+                _daoUser.deletaUsuarioLogado();
 
-               //TODO: Deletando todas as empresas do usuario.
-               _daoEmpresa.deleteEmpresa();
+                //TODO: Deletando todas as empresas do usuario.
+                _daoEmpresa.deleteEmpresa();
 
-               //TODO: Indo para a tela de loginpage
-                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
-
+                //TODO: Indo para a tela de loginpage
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
               },
             ),
             //TODO token
@@ -357,12 +374,12 @@ class _drawerSide extends State<DrawerSide> {
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.vpn_key_outlined,
-                        color: Colors.black54, size: MediaWidth  / 14),
+                        color: Colors.black54, size: MediaWidth / 14),
                   ),
                   Text(
                     'Verificar token',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaWidth  / 20),
+                        color: Colors.black54, fontSize: MediaWidth / 20),
                   ),
                 ],
               ),
@@ -389,7 +406,7 @@ class _drawerSide extends State<DrawerSide> {
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 20),
                         child: Icon(Icons.autorenew,
-                            color: Colors.black26, size: MediaWidth  / 14),
+                            color: Colors.black26, size: MediaWidth / 14),
                       ),
                       Column(
                         children: [
@@ -419,7 +436,3 @@ class _drawerSide extends State<DrawerSide> {
     );
   }
 }
-
-
-
-

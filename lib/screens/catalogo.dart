@@ -19,7 +19,6 @@ class _catalogo extends State<Catalogo> {
       length: 3,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-
         endDrawer: drawerFiltroCatalogo(),
         appBar: AppBar(
           //TODO: Botão de returno

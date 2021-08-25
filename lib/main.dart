@@ -1,5 +1,7 @@
 
 import 'package:appmestre/database/dao/user_dao.dart';
+import 'package:appmestre/screens/caixa_banco.dart';
+import 'package:appmestre/screens/catalogo.dart';
 import 'package:appmestre/screens/detalhesdoitem.dart';
 import 'package:appmestre/screens/home.dart';
 import 'package:appmestre/screens/login.dart';
@@ -46,6 +48,7 @@ class MyApp extends StatelessWidget {
                     primarySwatch: Colors.blueGrey,//TODO: Cor do app
                   ),
                   home: HomePage(),
+                  //home: CaixaBanco(),
                 );
                 }else{
                 //TODO Se Não, Direciona a tela para o Login.

@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:appmestre/components/resumo_text.dart';
+import 'package:appmestre/screens/views/slider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +13,20 @@ class DetalhesDoItem extends StatefulWidget {
 
 class _detalhesDoItem extends State<DetalhesDoItem> {
   get MediaWidth => MediaQuery.of(context).size.width;
+
+  //TODO Valor padrao
   String dropdownvalue = 'Tabela avulsos';
+
+  //TODO Valores do drop
   var items =  ['Tabela avulsos','Banana','Grapes','Orange','watermelon','Pineapple'];
+
   bool produtoativo = true;//TODO: Estado do produto, ativo = true ou desativo = false !
   bool produtoFavorito = false; //TODO: Estado do favorito do produto, ativo = true ou desativo = false !
 
+  //TODO: Nome do produto
+  String textteste = 'Computador Live ZE intel windows ULN3350430W DUAL core N3350 4GB SSD 30GB HDMI USB REDE WINDOWS 10';
+
+  //TODO Lista das img dos produtos
   final List<String> imgList = [
     'images/cap.png',
     'images/comp-live.png',
@@ -21,11 +34,13 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
     'images/note-lenovo.png',
   ];
 
+  CarouselController buttonCarouselControllerItem = CarouselController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Center(child: Text('Computador Live ZE INTEL    ', style: TextStyle(fontWeight: FontWeight.w700),)),
+          title: Center(child: Text('${resumoText(3, textteste)}', style: TextStyle(fontWeight: FontWeight.w700),)),
           backgroundColor: Color.fromRGBO(36, 82, 108, 55),
         ),
         body: SingleChildScrollView(
@@ -41,7 +56,9 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                     children: [
                       Column(
                         children: [
-                          Text('Cód:1558'),
+                          Text('Cód:1558', style: TextStyle(
+                            color: Colors.black54
+                          ),),
                         ],
                       ),
                       produtoFavorito == true ?
@@ -52,7 +69,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                           ),
                         onTap: (){
                             setState(() {
-                              produtoFavorito = false;
+                               produtoFavorito = false;
                             });
                           ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -93,29 +110,98 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                 ),
 
                 //TODO: Bloco img do Produto.
-                Container(
-                    width: double.infinity,
-                    height: MediaWidth / 1.8,
-                    //color: Colors.orange.shade100,
-                    child: CarouselSlider(
-                      options: CarouselOptions(height: 400.0),
-                      items: imgList.map((item) {
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 35, right: 35),
-                          child: Container(
-                            child: Center(
-                              child: Image.asset(
-                                item,
-                                fit: BoxFit.cover,
-                                width: 1000,
-                              ),
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    )),
+                // Stack(
+                //   children: [
+                //     Container(
+                //         width: double.infinity,
+                //         height: MediaWidth / 1.8,
+                //       //  color: Colors.orange.shade100,
+                //         child: CarouselSlider(
+                //           carouselController: buttonCarouselControllerItem,
+                //           options: CarouselOptions(height: 400.0),
+                //           items: imgList.map((item) {
+                //             return Padding(
+                //               padding: const EdgeInsets.only(left: 35, right: 35),
+                //               child: Container(
+                //                 child: Center(
+                //                   child: Image.asset(
+                //                     item,
+                //                     fit: BoxFit.cover,
+                //                     width: 1000,
+                //                   ),
+                //                 ),
+                //               ),
+                //             );
+                //           }).toList(),
+                //         )
+                //     ),
+                //     Container(
+                //       width: double.infinity,
+                //       height: MediaWidth / 1.8,
+                //       //color: Colors.black12,
+                //       child: Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         children: [
+                //           GestureDetector(
+                //             child: Container(
+                //               padding: EdgeInsets.only(left: 15),
+                //               alignment: Alignment.centerLeft,
+                //               height: MediaWidth / 1.8,
+                //               width: MediaWidth / 3,
+                //              // color: Colors.blue,
+                //               child: Icon(
+                //                   Icons.arrow_back_ios,
+                //                   color: Colors.orange,
+                //                   size: MediaWidth / 13
+                //               ),
+                //             ),
+                //             onTap: (){
+                //               buttonCarouselControllerItem.previousPage(
+                //                   duration: Duration(
+                //                       milliseconds: 300
+                //                   ), curve: Curves.linear
+                //               );
+                //             },
+                //           ),
+                //           Container(
+                //             height: MediaWidth / 1.8,
+                //             width: MediaWidth / 3,
+                //
+                //           ),
+                //           GestureDetector(
+                //             child: Container(
+                //               padding: EdgeInsets.only(right: 15),
+                //               alignment: Alignment.centerRight,
+                //               height: MediaWidth / 1.8,
+                //               width: MediaWidth / 3,
+                //              // color: Colors.red,
+                //               child:   Transform.rotate(
+                //                 angle: 180 * pi / 180,
+                //                 child: Icon(
+                //                     Icons.arrow_back_ios,
+                //                     color: Colors.orange,
+                //                     size: MediaWidth / 13
+                //                 ),
+                //               ),
+                //             ),
+                //             onTap: (){
+                //               buttonCarouselControllerItem.nextPage(
+                //                   duration: Duration(
+                //                       milliseconds: 300
+                //                   ), curve: Curves.linear
+                //               );
+                //             },
+                //           ),
+                //         ],
+                //       ),
+                //     )
+                //   ],
+                // ),
 
                 //TODO: Bloco valor e estoque.
+
+                CarouselSliders(MediaWidth, buttonCarouselControllerItem, imgList),
+
                 Container(
                   padding: EdgeInsets.only(left: 15, right: 15),
                   width: double.infinity,
@@ -185,7 +271,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade200,
                             child: Text('Familia', style: TextStyle(
-                              fontSize: 19,
+                              fontSize: 18,
                               fontWeight: FontWeight.w400,
                               color: Colors.black54
                             ),),
@@ -197,7 +283,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade300,
                             child: Text('Equipamento ', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -214,7 +300,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade300,
                             child: Text('Estoque ', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -226,7 +312,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade200,
                             child: Text('10.0 ', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -243,7 +329,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade200,
                             child: Text('NCM ', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -255,7 +341,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade300,
                             child: Text('8471.50.10 ', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -272,7 +358,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade300,
                             child: Text('Ref ', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -284,7 +370,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade200,
                             child: Text('2084', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -301,7 +387,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade200,
                             child: Text('Medida', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -313,7 +399,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade300,
                             child: Text('Unidade', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -330,7 +416,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade300,
                             child: Text('Grupo ', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -342,7 +428,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade200,
                             child: Text('Grupo01', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -359,7 +445,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade200,
                             child: Text('SubGrupo', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -371,7 +457,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade300,
                             child: Text('SubGrupo01', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -388,7 +474,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             height: 40,
                             color: Colors.grey.shade300,
                             child: Text('Tabela Preco', style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 18,
                               fontWeight: FontWeight.w400,
                                 color: Colors.black54
                             ),),
@@ -408,7 +494,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: new Text(value, style: TextStyle(
-                                    fontSize: 19,
+                                    fontSize: 18,
                                     fontWeight: FontWeight.w400,
                                       color: Colors.black54
                                 )),
