@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:appmestre/components/resumo_text.dart';
 import 'package:appmestre/screens/views/slider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -40,7 +38,16 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Center(child: Text('${resumoText(3, textteste)}', style: TextStyle(fontWeight: FontWeight.w700),)),
+          title: Center(
+              child: Text(
+                '${resumoText(3, textteste)}', style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: MediaWidth < 400
+                      ? MediaWidth / 20
+                      : MediaWidth / 25
+                ),
+              ),
+            ),
           backgroundColor: Color.fromRGBO(36, 82, 108, 55),
         ),
         body: SingleChildScrollView(
@@ -110,6 +117,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                 ),
 
                 //TODO: Bloco img do Produto.
+
                 // Stack(
                 //   children: [
                 //     Container(
@@ -198,8 +206,9 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                 //   ],
                 // ),
 
-                //TODO: Bloco valor e estoque.
+                //TODO: Bloco valor e estoque
 
+                //TODO Slide do produto
                 CarouselSliders(MediaWidth, buttonCarouselControllerItem, imgList),
 
                 Container(
@@ -214,14 +223,18 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                           Text(
                             'R\$: 1.800,99',
                             style: TextStyle(
-                                fontSize: MediaWidth / 20,
+                                fontSize: MediaWidth < 400
+                                    ? MediaWidth / 20
+                                    : MediaWidth / 22,
                                 color: Colors.green,
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
                             '88 un',
                             style: TextStyle(
-                                fontSize: MediaWidth / 22,
+                                fontSize: MediaWidth < 400
+                                    ? MediaWidth / 22
+                                    : MediaWidth / 24,
                                 fontWeight: FontWeight.w300,
                                 color: Colors.black87),
                           ),
@@ -246,7 +259,10 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                     child: Text(
                       'Computador Live ZE intel windows ULN3350430W DUAL core N3350 4GB SSD 30GB HDMI USB REDE WINDOWS 10',
                       style: TextStyle(
-                          fontSize: MediaWidth / 21, color: Colors.black54),
+                         color: Colors.black54,
+                          fontSize: MediaWidth < 400
+                              ? MediaWidth / 21
+                              : MediaWidth / 24),
                     ),
                   ),
                 ),
@@ -255,7 +271,15 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                 Container(
                   padding: EdgeInsets.only(left: 15, top: 10, bottom: 15),
                   alignment: Alignment.centerLeft,
-                  child: Text(' - Detalhes do produto', style: TextStyle(fontSize: 19, color: Colors.black54, fontWeight: FontWeight.w700),),
+                  child: Text(' - Detalhes do produto',
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.w700,
+                        fontSize: MediaWidth < 400
+                            ? MediaWidth / 24
+                            : MediaWidth / 28,
+                    ),
+                  ),
                 ),
 
                 //TODO: Mais detalhes do produto.
@@ -268,25 +292,35 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                            ? 40
+                            : 50,
                             color: Colors.grey.shade200,
-                            child: Text('Familia', style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black54
-                            ),),
+                            child: Text(
+                                'Familia',
+                                style: TextStyle(
+                                  fontSize: MediaWidth / 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54
+                              ),
+                            ),
                           ),
                           Container(
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade300,
-                            child: Text('Equipamento ', style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black54
-                            ),),
+                            child: Text(
+                                'Equipamento ',
+                                style: TextStyle(
+                                  fontSize: MediaWidth / 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -297,25 +331,35 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade300,
-                            child: Text('Estoque ', style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black54
-                            ),),
+                            child: Text(
+                                'Estoque ',
+                                style: TextStyle(
+                                  fontSize: MediaWidth / 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54
+                              ),
+                            ),
                           ),
                           Container(
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade200,
-                            child: Text('10.0 ', style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black54
-                            ),),
+                            child: Text(
+                                '10.0 ',
+                                style: TextStyle(
+                                  fontSize: MediaWidth / 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -326,25 +370,35 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade200,
-                            child: Text('NCM ', style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black54
-                            ),),
+                            child: Text(
+                                'NCM ',
+                                style: TextStyle(
+                                  fontSize: MediaWidth / 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54
+                              ),
+                            ),
                           ),
                           Container(
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade300,
-                            child: Text('8471.50.10 ', style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black54
-                            ),),
+                            child: Text(
+                                '8471.50.10 ',
+                                style: TextStyle(
+                                  fontSize: MediaWidth / 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -355,25 +409,35 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade300,
-                            child: Text('Ref ', style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black54
-                            ),),
+                            child: Text(
+                                'Ref ',
+                                style: TextStyle(
+                                  fontSize: MediaWidth / 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54
+                              ),
+                            ),
                           ),
                           Container(
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade200,
-                            child: Text('2084', style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black54
-                            ),),
+                            child: Text(
+                                '2084',
+                                style: TextStyle(
+                                  fontSize: MediaWidth / 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -384,25 +448,35 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade200,
-                            child: Text('Medida', style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black54
-                            ),),
+                            child: Text(
+                                'Medida',
+                                style: TextStyle(
+                                  fontSize:MediaWidth / 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54
+                              ),
+                            ),
                           ),
                           Container(
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade300,
-                            child: Text('Unidade', style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black54
-                            ),),
+                            child: Text(
+                                'Unidade',
+                                style: TextStyle(
+                                  fontSize: MediaWidth / 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -413,25 +487,35 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade300,
-                            child: Text('Grupo ', style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black54
-                            ),),
+                            child: Text(
+                                'Grupo ',
+                                style: TextStyle(
+                                  fontSize: MediaWidth / 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54
+                              ),
+                            ),
                           ),
                           Container(
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade200,
-                            child: Text('Grupo01', style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black54
-                            ),),
+                            child: Text(
+                                'Grupo01',
+                                style: TextStyle(
+                                  fontSize: MediaWidth / 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -442,25 +526,35 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade200,
-                            child: Text('SubGrupo', style: TextStyle(
-                                fontSize: 18,
+                            child: Text(
+                              'SubGrupo',
+                              style: TextStyle(
+                                fontSize: MediaWidth / 25,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
-                            ),),
+                              ),
+                            ),
                           ),
                           Container(
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade300,
-                            child: Text('SubGrupo01', style: TextStyle(
-                                fontSize: 18,
+                            child: Text(
+                              'SubGrupo01',
+                              style: TextStyle(
+                                fontSize: MediaWidth / 25,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black54
-                            ),),
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -471,19 +565,26 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                ? 40
+                                : 50,
                             color: Colors.grey.shade300,
-                            child: Text('Tabela Preco', style: TextStyle(
-                                fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                                color: Colors.black54
-                            ),),
+                            child: Text(
+                              'Tabela Preco',
+                              style: TextStyle(
+                                  fontSize: MediaWidth / 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54
+                              ),
+                            ),
                           ),
                           Container(
                             padding: EdgeInsets.only(left: 5),
                             alignment: Alignment.centerLeft,
                             width: MediaWidth / 2.2,
-                            height: 40,
+                            height: MediaWidth < 400
+                                  ? 40
+                                  : 50,
                             color: Colors.grey.shade200,
                             child:
                             DropdownButton<String>(
@@ -493,11 +594,13 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                               items: items.map((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
-                                  child: new Text(value, style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
+                                  child: new Text(
+                                    value, style: TextStyle(
+                                      fontSize: MediaWidth / 25,
+                                      fontWeight: FontWeight.w400,
                                       color: Colors.black54
-                                )),
+                                    ),
+                                  ),
                                 );
                               }).toList(),
                               onChanged: (value) {
@@ -521,9 +624,9 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                   width: double.infinity,
                   height: 30,
                 )
-              ],
-            ),
+          ],
         ),
+      ),
     );
   }
 }

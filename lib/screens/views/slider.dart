@@ -4,6 +4,13 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
+
+//TODO CarouselSliders
+//TODO - MediaWidth : Largura atual do celualr
+//TODO - buttonCarouselControllerItem : controlador do carrosel Item
+//TODO - imgList : Lista de imgs para o controlador
+
+
 CarouselSliders(MediaWidth, CarouselController buttonCarouselControllerItem, List<String> imgList) {
 
   return Stack(

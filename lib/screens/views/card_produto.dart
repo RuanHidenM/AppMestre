@@ -9,7 +9,9 @@ CardProduto (context, mediaWidth){
         child: Padding(
           padding: const EdgeInsets.all(5),
           child: Container(
-            height: mediaWidth / 3.3,
+            height:mediaWidth < 400
+                ? mediaWidth / 3.3
+                : mediaWidth / 4.3,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(5),
@@ -22,7 +24,8 @@ CardProduto (context, mediaWidth){
                 ),
               ],
             ),
-            child: Column(
+            child:
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -32,14 +35,14 @@ CardProduto (context, mediaWidth){
                     children: [
                       //TODO: Bloco IMG do Produto
                       Expanded(
-                        flex: 5,
+                        flex: 4,
                         // child: Icon(
                         //   Icons.image_not_supported_outlined,
                         //   color: Colors.black12,
                         //   size: mediaWidth / 5,
                         // ),
                         child: Container(
-                         // color: Colors.blue,
+                          //color: Colors.blue,
                             child: Image.asset('images/note-acer.png')
                         ),
                       ),
@@ -54,11 +57,12 @@ CardProduto (context, mediaWidth){
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               //mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-
                                 //TODO: Bloco nome do produto
                                 Container(
-                                  height: mediaWidth / 6,
-                                  //color:Colors.red,
+                                  height: mediaWidth < 400
+                                      ? mediaWidth / 6
+                                      : mediaWidth / 7,
+                                 // color:Colors.white,
                                   child: Container(
                                     child: Padding(
                                       padding:
@@ -70,7 +74,9 @@ CardProduto (context, mediaWidth){
                                         // overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
                                           color: Colors.black54,
-                                          fontSize: mediaWidth / 22,
+                                          fontSize: mediaWidth < 400
+                                              ? mediaWidth / 22
+                                              : mediaWidth / 27
                                         ),
                                       ),
                                     ),
@@ -92,7 +98,9 @@ CardProduto (context, mediaWidth){
                                             'R\$: 100,00',
                                             style: TextStyle(
                                                 color: Colors.green,
-                                                fontSize: mediaWidth / 24
+                                                fontSize: mediaWidth < 400
+                                                    ? mediaWidth / 24
+                                                    : mediaWidth / 28
                                             ),
                                           ),
                                         ],
@@ -107,14 +115,18 @@ CardProduto (context, mediaWidth){
                                             child: Icon(
                                               Icons.widgets,
                                               color: Color.fromRGBO(36, 82, 108, 60),
-                                              size: mediaWidth/ 25,
+                                              size: mediaWidth < 400
+                                                  ? mediaWidth / 25
+                                                  : mediaWidth / 30
                                             ),
                                           ),
                                           Text(
                                             '10',
                                             style: TextStyle(
                                                 color: Colors.black54,
-                                                fontSize: mediaWidth / 25
+                                                fontSize: mediaWidth < 400
+                                                    ? mediaWidth / 25
+                                                    : mediaWidth / 30
                                             ),
                                           ),
                                         ],

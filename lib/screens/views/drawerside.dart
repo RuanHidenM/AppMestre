@@ -55,7 +55,7 @@ class _drawerSide extends State<DrawerSide> {
     _daoUser.findUsuario().then((valor) => setState(() {
           nomeUsuario = valor.nome;
           emailUsuario = valor.email;
-        }));
+    }));
   }
 
   void initState() {
@@ -111,7 +111,9 @@ class _drawerSide extends State<DrawerSide> {
                                         child: GestureDetector(
                                           child: Image.asset(
                                             'logo_emporiofloriano.png',
-                                            height: MediaWidth / 4.5,
+                                            height: MediaWidth < 400 //TODO: Se a tela for maior que 600
+                                                ? MediaWidth / 4.5
+                                                : MediaWidth / 5,
                                           ),
                                           onTap: () {
                                             DropdownButtonEmpresas();
@@ -133,12 +135,21 @@ class _drawerSide extends State<DrawerSide> {
                                   children: [
                                     Text(
                                       '$nomeUsuario',
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                        fontSize: MediaWidth < 400
+                                            ? MediaWidth / 27
+                                            : MediaWidth / 33
+                                      ),
                                     ),
                                     Text(
                                       '$emailUsuario',
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 13),
+                                          color: Colors.white,
+                                          fontSize:MediaWidth < 400
+                                              ? MediaWidth / 30
+                                              : MediaWidth / 35
+                                      ),
                                     ),
                                     // Text('104.388.799.70', style: TextStyle(color: Colors.white),),
                                     //TODO Informativo se esta conectado a uma internet
@@ -151,13 +162,12 @@ class _drawerSide extends State<DrawerSide> {
                                           padding:
                                               const EdgeInsets.only(right: 5),
                                           child: Icon(
-                                            _connectionStatus !=
-                                                    'ConnectivityResult.none'
+                                            _connectionStatus != 'ConnectivityResult.none'
                                                 ? Icons.wifi
                                                 : Icons.wifi_off,
                                             size: MediaHeight / 60,
-                                            color: _connectionStatus !=
-                                                    'ConnectivityResult.none'
+                                            color:
+                                            _connectionStatus != 'ConnectivityResult.none'
                                                 ? Colors.lightGreen
                                                 : Colors.redAccent,
                                           ),
@@ -218,12 +228,20 @@ class _drawerSide extends State<DrawerSide> {
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.apps,
-                        color: Colors.black54, size: MediaWidth / 14),
+                        color: Colors.black54,
+                      size: MediaWidth < 400
+                          ? MediaWidth / 14
+                          : MediaWidth / 16,
+                    ),
                   ),
                   Text(
                     'Dashboard',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaWidth / 20),
+                        color: Colors.black54,
+                        fontSize: MediaWidth < 400
+                            ? MediaWidth / 20
+                            : MediaWidth / 25,
+                    ),
                   ),
                 ],
               ),
@@ -241,13 +259,19 @@ class _drawerSide extends State<DrawerSide> {
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.view_list,
-                        color: Colors.black54, size: MediaWidth / 14),
+                        color: Colors.black54,
+                      size: MediaWidth < 400
+                          ? MediaWidth / 14
+                          : MediaWidth / 16,
+                    ),
                   ),
                   Text(
                     'Catálogo',
                     style: TextStyle(
                       color: Colors.black54,
-                      fontSize: MediaWidth / 20,
+                      fontSize: MediaWidth < 400
+                          ? MediaWidth / 20
+                          : MediaWidth / 25,
                     ),
                   ),
                 ],
@@ -266,14 +290,18 @@ class _drawerSide extends State<DrawerSide> {
                     child: Icon(
                       Icons.bar_chart_sharp,
                       color: Colors.black54,
-                      size: MediaWidth / 14,
+                      size: MediaWidth < 400
+                          ? MediaWidth / 14
+                          : MediaWidth / 16,
                     ),
                   ),
                   Text(
                     'Relatórios e comissões',
                     style: TextStyle(
                       color: Colors.black54,
-                      fontSize: MediaWidth / 20,
+                      fontSize: MediaWidth < 400
+                          ? MediaWidth / 20
+                          : MediaWidth / 25,
                     ),
                   ),
                 ],
@@ -290,13 +318,18 @@ class _drawerSide extends State<DrawerSide> {
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.monetization_on,
-                        color: Colors.black54, size: MediaWidth / 14),
+                        color: Colors.black54,
+                        size: MediaWidth < 400
+                          ? MediaWidth / 14
+                          : MediaWidth / 16,),
                   ),
                   Text(
                     'Caixas e Bancos',
                     style: TextStyle(
                       color: Colors.black54,
-                      fontSize: MediaWidth / 20,
+                      fontSize: MediaWidth < 400
+                          ? MediaWidth / 20
+                          : MediaWidth / 25,
                     ),
                   ),
                 ],
@@ -319,14 +352,18 @@ class _drawerSide extends State<DrawerSide> {
                     child: Icon(
                       Icons.settings,
                       color: Colors.black54,
-                      size: MediaWidth / 14,
+                      size: MediaWidth < 400
+                          ? MediaWidth / 14
+                          : MediaWidth / 16,
                     ),
                   ),
                   Text(
                     'Configurações',
                     style: TextStyle(
                       color: Colors.black54,
-                      fontSize: MediaWidth / 20,
+                      fontSize: MediaWidth < 400
+                          ? MediaWidth / 20
+                          : MediaWidth / 25,
                     ),
                   ),
                 ],
@@ -342,14 +379,18 @@ class _drawerSide extends State<DrawerSide> {
                     child: Icon(
                       Icons.logout,
                       color: Colors.black54,
-                      size: MediaWidth / 14,
+                        size: MediaWidth < 400
+                            ? MediaWidth / 14
+                            : MediaWidth / 16,
                     ),
                   ),
                   Text(
                     'Desconectar',
                     style: TextStyle(
                       color: Colors.black54,
-                      fontSize: MediaWidth / 20,
+                      fontSize: MediaWidth < 400
+                          ? MediaWidth / 20
+                          : MediaWidth / 25,
                     ),
                   ),
                 ],
@@ -374,12 +415,20 @@ class _drawerSide extends State<DrawerSide> {
                   Padding(
                     padding: const EdgeInsets.only(left: 0, right: 10),
                     child: Icon(Icons.vpn_key_outlined,
-                        color: Colors.black54, size: MediaWidth / 14),
+                        color: Colors.black54,
+                        size: MediaWidth < 400
+                            ? MediaWidth / 14
+                            : MediaWidth / 16
+                    ),
                   ),
                   Text(
                     'Verificar token',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: MediaWidth / 20),
+                        color: Colors.black54,
+                      fontSize: MediaWidth < 400
+                          ? MediaWidth / 20
+                          : MediaWidth / 25,
+                    ),
                   ),
                 ],
               ),
@@ -406,7 +455,10 @@ class _drawerSide extends State<DrawerSide> {
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 20),
                         child: Icon(Icons.autorenew,
-                            color: Colors.black26, size: MediaWidth / 14),
+                            color: Colors.black26, size: MediaWidth < 400
+                                ? MediaWidth / 14
+                                : MediaWidth / 16
+                        ),
                       ),
                       Column(
                         children: [
@@ -414,13 +466,19 @@ class _drawerSide extends State<DrawerSide> {
                             'Ultima sincronização: ',
                             style: TextStyle(
                                 color: Colors.black26,
-                                fontSize: MediaWidth / 20),
+                              fontSize: MediaWidth < 400
+                                  ? MediaWidth / 20
+                                  : MediaWidth / 25,
+                            ),
                           ),
                           Text(
                             '01/05/2021',
                             style: TextStyle(
                                 color: Colors.black26,
-                                fontSize: MediaHeight / 40),
+                                fontSize: MediaWidth < 400
+                                    ? MediaWidth / 20
+                                    : MediaWidth / 25,
+                            ),
                           ),
                         ],
                       ),

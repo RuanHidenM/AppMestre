@@ -30,6 +30,7 @@ class _homePage extends State<HomePage>{
           length: 3,
           child: Scaffold(
             drawer:DrawerSide(),
+            drawerScrimColor: Colors.black26,
             appBar: AppBar(
               //TODO: Cor top bar
               backgroundColor: Color.fromRGBO(36, 82, 108, 25),
@@ -37,7 +38,13 @@ class _homePage extends State<HomePage>{
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Dashboard', style: TextStyle(color: Colors.white),),
+                  Text('Dashboard',
+                    style: TextStyle(
+                        color: Colors.white,
+                      fontSize: MediaWidth < 400
+                          ? MediaWidth / 20
+                          : MediaWidth / 23
+                    ),),
                 ],
               ),
               //TODO: Top bar menu home page
@@ -53,8 +60,8 @@ class _homePage extends State<HomePage>{
             //TODO Atalhos do top bat menu home page
             body: TabBarView(
               children: [
-                homeHome(),
                 dashboardHome(),
+                homeHome(),
                 atalhoHome(),
               ],
             ),

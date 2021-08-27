@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:appmestre/components/loading_progress_logo_mestre.dart';
 import 'package:appmestre/http/http_user_auth.dart';
-import 'package:appmestre/http/http_verifica_token.dart';
 import 'package:appmestre/screens/home.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,6 @@ import 'package:appmestre/components/alert/alert_small_title_icon.dart';
 import 'package:appmestre/canvas/canvas_screen-login.dart';
 import 'package:appmestre/components/button/button_small_title_icon_color.dart';
 import 'package:appmestre/components/button/circular_button_medium_title_color_icon.dart';
-import 'package:appmestre/components/progress.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -138,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                                             child: Center(
                                               //TODO: Text LOGIN
                                               child: Text(
-                                                'Login',
+                                                'Login $MediaWidth',
                                                 style: TextStyle(
                                                     fontSize: MediaWidth / 18,
                                                     fontWeight: FontWeight.w600,

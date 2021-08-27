@@ -23,11 +23,19 @@ class _catalogo extends State<Catalogo> {
         appBar: AppBar(
           //TODO: Botão de returno
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
+            icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+            ),
             onPressed: () => Navigator.push(
                 context, MaterialPageRoute(builder: (context) => HomePage())),
           ),
-          title: const Text('Catalogo'),
+          title: const Text(
+            'Catalogo',
+            style: TextStyle(
+
+            ),
+          ),
           backgroundColor: Color.fromRGBO(36, 82, 108, 55),
         ),
         body: CardProduto(context, MediaWidth),

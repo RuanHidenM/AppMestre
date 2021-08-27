@@ -1,8 +1,5 @@
 
 import 'package:appmestre/database/dao/user_dao.dart';
-import 'package:appmestre/screens/caixa_banco.dart';
-import 'package:appmestre/screens/catalogo.dart';
-import 'package:appmestre/screens/detalhesdoitem.dart';
 import 'package:appmestre/screens/home.dart';
 import 'package:appmestre/screens/login.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'components/loading_progress_logo_mestre.dart';
 
 //TODO: Mesta tela é verificado se á dados do usuario logado
-
 void main() {
   //TODO Efeito de inicialização do App
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +25,8 @@ class MyApp extends StatelessWidget {
     });
     //TODO Futurebuilder do efeito no carregamento na tela.
     return FutureBuilder(
+
+
       future: Init.instance.initialize(),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -47,8 +45,8 @@ class MyApp extends StatelessWidget {
                   theme: ThemeData(
                     primarySwatch: Colors.blueGrey,//TODO: Cor do app
                   ),
-                  home: HomePage(),
-                  //home: CaixaBanco(),
+                    home: HomePage(),
+                  //home: DetalhesDoItem(),
                 );
                 }else{
                 //TODO Se Não, Direciona a tela para o Login.

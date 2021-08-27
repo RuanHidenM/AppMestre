@@ -62,18 +62,22 @@ class _dropdownButtonEmpresas extends State<DropdownButtonEmpresas> {
             padding: const EdgeInsets.only(left: 10),
             child: Center(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: MediaWidth / 1.7,
+                  width:MediaWidth / 1.7,
                   child: Center(
                     child: Text(
                       '$item',
                       //'Panimport Importacao e Exportacao LTDA - EPP',
                       overflow: TextOverflow.fade,
                       style: TextStyle(
+
                         color: Colors.white,
-                        fontSize: MediaWidth / 22,
+                        fontSize: MediaWidth < 400
+                            ? MediaWidth / 22
+                            : MediaWidth / 27
                       ),
                     ),
 
@@ -95,7 +99,6 @@ class _dropdownButtonEmpresas extends State<DropdownButtonEmpresas> {
                     width: MediaWidth / 1.5,
                     child: Text(
                       '$item',
-
                       overflow: TextOverflow.fade,
                       style: TextStyle(
                         fontSize: MediaHeight / 50,
