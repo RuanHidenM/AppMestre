@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
-class atalhoHome extends StatefulWidget{
-  _atalhoHome createState() => _atalhoHome();
+class homeAtalhos extends StatefulWidget{
+  _homeAtalhos createState() => _homeAtalhos();
 }
 
-class _atalhoHome extends State<atalhoHome>{
+class _homeAtalhos extends State<homeAtalhos> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Atalho page'),);
+    return Text('Atalhos');
   }
 }

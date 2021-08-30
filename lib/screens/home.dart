@@ -23,6 +23,7 @@ class _homePage extends State<HomePage>{
     setState(() {
     });
   }
+
   @override
   Widget build(BuildContext context) {
       return MaterialApp(
@@ -43,8 +44,9 @@ class _homePage extends State<HomePage>{
                         color: Colors.white,
                       fontSize: MediaWidth < 400
                           ? MediaWidth / 20
-                          : MediaWidth / 23
-                    ),),
+                          : MediaWidth / 23,
+                    ),
+                  ),
                 ],
               ),
               //TODO: Top bar menu home page
@@ -62,7 +64,7 @@ class _homePage extends State<HomePage>{
               children: [
                 dashboardHome(),
                 homeHome(),
-                atalhoHome(),
+                homeAtalhos(),
               ],
             ),
           ),

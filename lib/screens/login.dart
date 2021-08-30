@@ -136,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                                             child: Center(
                                               //TODO: Text LOGIN
                                               child: Text(
-                                                'Login $MediaWidth',
+                                                'Login',
                                                 style: TextStyle(
                                                     fontSize: MediaWidth / 18,
                                                     fontWeight: FontWeight.w600,

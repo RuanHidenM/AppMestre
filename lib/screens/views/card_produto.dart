@@ -46,7 +46,6 @@ CardProduto (context, mediaWidth){
                             child: Image.asset('images/note-acer.png')
                         ),
                       ),
-
                       //TODO info do produto
                       Expanded(
                         flex: 8,
