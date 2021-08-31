@@ -53,8 +53,8 @@ class _homePage extends State<HomePage>{
               bottom: const TabBar(
                 indicatorColor: Colors.orangeAccent,
                 tabs: [
-                  Tab(icon: Icon(Icons.home),),
                   Tab(icon: Icon(Icons.bar_chart),),
+                  Tab(icon: Icon(Icons.work),),
                   Tab(icon: Icon(Icons.view_module_rounded),)
                 ],
               ),

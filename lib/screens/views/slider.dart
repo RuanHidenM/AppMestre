@@ -13,7 +13,8 @@ import 'package:flutter/material.dart';
 
 CarouselSliders(MediaWidth, CarouselController buttonCarouselControllerItem, List<String> imgList) {
 
-  return Stack(
+  return
+    Stack(
     children: [
       Container(
           width: double.infinity,
@@ -50,7 +51,7 @@ CarouselSliders(MediaWidth, CarouselController buttonCarouselControllerItem, Lis
                 alignment: Alignment.centerLeft,
                 height: MediaWidth / 1.8,
                 width: MediaWidth / 3,
-// color: Colors.blue,
+                //color: Colors.blue,
                 child: Icon(Icons.arrow_back_ios,
                     color: Colors.orange, size: MediaWidth / 13),
               ),
@@ -70,7 +71,7 @@ CarouselSliders(MediaWidth, CarouselController buttonCarouselControllerItem, Lis
                 alignment: Alignment.centerRight,
                 height: MediaWidth / 1.8,
                 width: MediaWidth / 3,
-// color: Colors.red,
+                // color: Colors.red,
                 child: Transform.rotate(
                   angle: 180 * pi / 180,
                   child: Icon(Icons.arrow_back_ios,
