@@ -8,11 +8,11 @@ class UserDao{
 
   static const String tableSql =
       'CREATE TABLE Usuario('
-      'id TEXT, '
-      'nome TEXT, '
-      'email TEXT, '
-      'tenantid TEXT, '
-      'token TEXT) ';
+      'id TEXT,'
+      'nome TEXT,'
+      'email TEXT,'
+      'tenantid TEXT,'
+      'token TEXT)';
 
   //TODO: Salvando um UsuarioLogin
   Future<int> save(Usuario usuario) async{

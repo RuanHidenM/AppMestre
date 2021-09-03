@@ -17,6 +17,7 @@ class _homeHome extends State<homeHome> {
         children: [
           Column(
             children: [
+              //TODO IMG
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 40),
@@ -26,6 +27,7 @@ class _homeHome extends State<homeHome> {
                   ),
                 ),
               ),
+
               Padding(
                 padding: const EdgeInsets.only(top: 20, left: 5, right: 5),
                 child: Container(
@@ -33,6 +35,7 @@ class _homeHome extends State<homeHome> {
                   color: Color.fromRGBO(249, 249, 249, 1),
                   child: Column(
                     children: [
+                      //TODO: TITLE
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Text('Um pouco da nossa história',style: TextStyle(
@@ -42,6 +45,8 @@ class _homeHome extends State<homeHome> {
                         ),
                         ),
                       ),
+
+                      //TODO: Descrição
                       Padding(
                         padding: const EdgeInsets.only(top: 15),
                         child: Text('A Mestre Sistemas iniciou suas atividades no ano de 1995, tendo como fundador Valmir'
@@ -76,11 +81,11 @@ class _homeHome extends State<homeHome> {
                             fontWeight: FontWeight.w300
                         ),),
                       ),
+
                     ],
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.only(top: 30, bottom: 10),
                 child: Container(

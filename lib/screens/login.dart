@@ -105,10 +105,12 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
+
                         Expanded(
                           flex: 1,
                           child: Container(),
                         ),
+
                         Expanded(
                           flex: 5,
                           child: Column(
@@ -167,6 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                                             ),
                                           ),
                                         ),
+
                                         //TODO: TextField Senha
                                         Padding(
                                           padding: const EdgeInsets.only(top: 8, bottom: 3, left: 3, right: 3),
@@ -245,13 +248,26 @@ class _LoginPageState extends State<LoginPage> {
                                                       );
                                                       setState(() => _loadding = false);
                                                     }
-                                                  });
+                                                  },
+                                                  );
                                                 }
                                               }
                                             });
 
                                            // setState(() => _loadding = false);
                                           },
+                                        ),
+
+                                        //TODO: Manter conectado
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(right: 4),
+                                              child: Icon(Icons.check_box, color: Colors.black54),
+                                            ),
+                                            Text('Manter conectado', style: TextStyle(color: Colors.black54),),
+                                          ],
                                         ),
                                       ],
                                     ),

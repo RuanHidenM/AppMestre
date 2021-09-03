@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:appmestre/database/dao/empresa_dao.dart';
 import 'package:appmestre/database/dao/user_dao.dart';
+import 'package:appmestre/http/http_produto.dart';
 import 'package:appmestre/http/http_verifica_token.dart';
 import 'package:appmestre/screens/catalogo.dart';
 import 'package:appmestre/screens/login.dart';
@@ -434,6 +435,7 @@ class _drawerSide extends State<DrawerSide> {
               ),
               onTap: () async {
                 VerificaTokenUser();
+                httpProduto();
               },
             ),
             //TODO Ultima sincronização

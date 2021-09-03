@@ -15,7 +15,7 @@ class EmpresaDao {
 
   //TODO: Salvando empresas do usuario
   Future<int> save(List<Empresa> empresa) async{
-    for(int i = 0; i < empresa.length; i++ ){
+    for(int i = 0; i < empresa.length; i++){
 
       final Database db = await getDatabase();
       final Map<String, dynamic> empresaMap = Map();

@@ -10,7 +10,6 @@ class ProdutoDestaque extends StatefulWidget {
 
 class _produtoDestaque extends State<ProdutoDestaque> {
   CarouselController buttonCarouselControllerItem = CarouselController();
-
   get MediaWidth => MediaQuery.of(context).size.width;
 
   @override
@@ -48,7 +47,7 @@ class _produtoDestaque extends State<ProdutoDestaque> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      //TODO IMG PRODUTO
+                                      //TODO: IMG PRODUTO
                                       Expanded(
                                         flex: 5,
                                         child: Container(
@@ -61,11 +60,12 @@ class _produtoDestaque extends State<ProdutoDestaque> {
                                           ),
                                         ),
                                       ),
-                                      //todo nome
+                                      //TODO: nome
                                       Expanded(
                                         flex: 6,
                                         child: Padding(
-                                          padding: const EdgeInsets.only(left: 5),
+                                          padding:
+                                              const EdgeInsets.only(left: 5),
                                           child: Container(
                                             padding: EdgeInsets.only(),
                                             height: double.infinity,
@@ -142,12 +142,9 @@ class _produtoDestaque extends State<ProdutoDestaque> {
                           ),
                         ),
                       ),
+                      //TODO: Numero top 3 mais vendido
                       Padding(
                         padding: const EdgeInsets.only(top: 10, left: 20),
-                        // child: Icon(
-                        //   Icons.looks_one,
-                        //   color: Colors.orange,
-                        // ),
                         child: CircleAvatar(
                           radius: 14,
                           backgroundColor: Colors.orange,
@@ -156,8 +153,7 @@ class _produtoDestaque extends State<ProdutoDestaque> {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 17,
-                              fontWeight: FontWeight.w600
-                            ),
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                       ),

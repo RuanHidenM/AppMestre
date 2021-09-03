@@ -1,3 +1,7 @@
+import 'package:appmestre/database/dao/produto_empresa_dao.dart';
+import 'package:appmestre/database/dao/produto_estoque_dao.dart';
+import 'package:appmestre/database/dao/produto_dao.dart';
+import 'package:appmestre/database/dao/produto_preco_dao.dart';
 import 'package:appmestre/database/dao/user_dao.dart';
 import 'package:appmestre/database/dao/empresa_dao.dart';
 import 'package:sqflite/sqflite.dart';
@@ -16,6 +20,19 @@ Future<Database> getDatabase() async{
 
       //TODO: Criando a tabela Empresa
       db.execute(EmpresaDao.tableSql);
+
+      //TODO: Criando a tabela Produto
+      db.execute(ProdutoDao.tableSql);
+
+      //TODO: Criando a tabela ProdutoEstoque
+      db.execute(ProdutoEstoqueDao.tableSql);
+
+      //TODO: Criando a tabela ProdutoEmpresa
+      db.execute(ProdutoEmpresaDao.tableSql);
+
+      //TODO: Criando a tabela ProdutoPreco
+      db.execute(ProdutoPrecoDao.tableSql);
+
     },
     //TODO: Verção do db
     version: 1,

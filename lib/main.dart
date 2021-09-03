@@ -25,8 +25,6 @@ class MyApp extends StatelessWidget {
     });
     //TODO Futurebuilder do efeito no carregamento na tela.
     return FutureBuilder(
-
-
       future: Init.instance.initialize(),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
