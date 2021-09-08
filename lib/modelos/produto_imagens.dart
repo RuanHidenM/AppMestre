@@ -1,12 +1,12 @@
-class ProdutoImagens{
+class ProdutoImagen{
   final String produtoId;
   final String imagem;
   final String extensao;
-  final bool principal;
-  final bool utilizar;
+  final int principal; //TODO: boolean, int para se gravado no sqflite
+  final int utilizar; //TODO: boolean, int para se gravado no sqflite
   final String url;
 
-  ProdutoImagens(
+  ProdutoImagen(
       this.produtoId,
       this.imagem,
       this.extensao,

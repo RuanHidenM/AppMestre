@@ -6,7 +6,7 @@ class ProdutoPrecoDao{
 
   //TODO: Criação da tabela ProdutoPreco
   static const String tableSql =
-      'CREATE TABLE ProdutoPreco('
+      'CREATE TABLE ProdutosPreco('
       'produtoId TEXT,'
       'tabelaId TEXT,'
       'tabelaNome TEXT,'
@@ -25,15 +25,15 @@ class ProdutoPrecoDao{
       produtoPrecoMap['preco'] = produtoPreco[i].preco;
       produtoPrecoMap['precoPromocional'] = produtoPreco[i].precoPromocional;
 
-      return db.insert('ProdutoPreco', produtoPrecoMap);
+      return db.insert('ProdutosPreco', produtoPrecoMap);
     }
     return 1;
   }
 
   Future<List<ProdutoPreco>> findProdutopreco() async{
     final Database db = await getDatabase();
-    await db.query('ProdutoPreco');
-    final List<Map<String, dynamic>> result = await db.rawQuery('SELECT * FROM ProdutoPreco');
+    await db.query('ProdutosPreco');
+    final List<Map<String, dynamic>> result = await db.rawQuery('SELECT * FROM ProdutosPreco');
     final List<ProdutoPreco> produtoPrecos = [];
 
     for(Map<String, dynamic> row in result){
@@ -45,8 +45,15 @@ class ProdutoPrecoDao{
           row['precoPromocional'],
         );
         produtoPrecos.add(produtoPreco);
-        print('produtoPrecos: $produtoPrecos');
+        print('Preco: $produtoPrecos');
     }
     return produtoPrecos;
   }
+
+  //TODO: Deletando todos os ProdutoPreco
+  Future<int> deleteProdutoPreco() async{
+    final Database db = await getDatabase();
+    return db.delete('ProdutosPreco');
+  }
+
 }

@@ -6,7 +6,7 @@ class ProdutoEmpresaDao{
 
   //TODO: Criação da tabela Produto Estoque o SQLITE
   static const String tableSql =
-      'CREATE TABLE ProdutoEmpresa('
+      'CREATE TABLE ProdutosEmpresa('
       'produtoId TEXT,'
       'empresaId TEXT,'
       'cstOrigem INTEGER,'
@@ -28,7 +28,7 @@ class ProdutoEmpresaDao{
       produtoEmpresaMap['indicadorProducao'] = produtoEmpresa[i].indicadorProducao;
       produtoEmpresaMap['tipo'] = produtoEmpresa[i].tipo;
       
-      return db.insert('ProdutoEmpresa', produtoEmpresaMap);
+      return db.insert('ProdutosEmpresa', produtoEmpresaMap);
     }
     return 1;
   }
@@ -36,8 +36,8 @@ class ProdutoEmpresaDao{
   //TODO: Buscando todos os dados
   Future<List<ProdutoEmpresa>> findProdutoEmpresa() async{
     final Database db = await getDatabase();
-    await db.query('ProdutoEmpresa');
-    final List<Map<String, dynamic>> result = await db.rawQuery('SELECT * FROM ProdutoEmpresa');
+    await db.query('ProdutosEmpresa');
+    final List<Map<String, dynamic>> result = await db.rawQuery('SELECT * FROM ProdutosEmpresa');
 
     final List<ProdutoEmpresa> produtoEmpresas = [];
 
@@ -51,8 +51,15 @@ class ProdutoEmpresaDao{
        row['tipo'],
      );
      produtoEmpresas.add(produtoEmpresa);
-     print('produtoEmpresas - $produtoEmpresas');
+     print('Empresas: $produtoEmpresas');
     }
     return produtoEmpresas;
+  }
+
+
+  //TODO: Deletando todos os ProdutoEmpresa
+  Future<int> deleteProdutoEmpresa() async{
+    final Database db = await getDatabase();
+    return db.delete('ProdutosEmpresa');
   }
 }

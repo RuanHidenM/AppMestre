@@ -1,6 +1,8 @@
+import 'package:appmestre/database/dao/produto_codigo_barra_dao.dart';
 import 'package:appmestre/database/dao/produto_empresa_dao.dart';
 import 'package:appmestre/database/dao/produto_estoque_dao.dart';
 import 'package:appmestre/database/dao/produto_dao.dart';
+import 'package:appmestre/database/dao/produto_imagen_dao.dart';
 import 'package:appmestre/database/dao/produto_preco_dao.dart';
 import 'package:appmestre/database/dao/user_dao.dart';
 import 'package:appmestre/database/dao/empresa_dao.dart';
@@ -33,11 +35,17 @@ Future<Database> getDatabase() async{
       //TODO: Criando a tabela ProdutoPreco
       db.execute(ProdutoPrecoDao.tableSql);
 
+      //TODO: Criando a tabela ProdutoImagen
+      db.execute(ProdutoImagenDao.tableSql);
+
+      //TODO: Criando a tabela ProdutoCodigoBarra
+      db.execute(ProdutoCodigoBarraDao.tableSql);
+
     },
     //TODO: Verção do db
     version: 1,
     //TODO: upando a verção e deixando essa linha de comando ligada, ira deletar os dados da verção anterior
-    //onDowngrade: onDatabaseDowngradeDelete
+    onDowngrade: onDatabaseDowngradeDelete
   );
 
 }

@@ -99,7 +99,13 @@ class ProdutoDao{
       );
       produtos.add(produto);
     }
-    print('retornado da tabela: $produtos');
+    print('Produto: $produtos');
     return produtos;
+  }
+
+  //TODO: Deletando todos os Produtos
+  Future<int> deleteProduto() async{
+    final Database db = await getDatabase();
+    return db.delete('Produtos');
   }
 }

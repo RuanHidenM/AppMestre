@@ -1,9 +1,9 @@
-class ProdutoCodigoBarras{
+class ProdutoCodigoBarra{
   final String produtoId;
   final String codigo;
   final String empresaId;
 
-  ProdutoCodigoBarras(
+  ProdutoCodigoBarra(
       this.produtoId,
       this.codigo,
       this.empresaId,

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:appmestre/database/dao/card_produto.dart';
 import 'package:appmestre/database/dao/empresa_dao.dart';
 import 'package:appmestre/database/dao/user_dao.dart';
 import 'package:appmestre/http/http_produto.dart';
@@ -28,6 +29,7 @@ class _drawerSide extends State<DrawerSide> {
 
   final _daoUser = UserDao();
   final _daoEmpresa = EmpresaDao();
+  final _cardProdutoDao = CardProdutoDao();
 
   _drawerSide() {
     //TODO verifica token
@@ -435,9 +437,73 @@ class _drawerSide extends State<DrawerSide> {
               ),
               onTap: () async {
                 VerificaTokenUser();
-                httpProduto();
+               // _cardProduto.findCardProduto();
               },
             ),
+
+            //TODO cadatrar teste
+            ListTile(
+              title: Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 0, right: 10),
+                    child: Icon(Icons.create_new_folder_outlined,
+                        color: Colors.black54,
+                        size: MediaWidth < 400
+                            ? MediaWidth / 14
+                            : MediaWidth / 16
+                    ),
+                  ),
+                  Text(
+                    'Cadastrar produto',
+                    style: TextStyle(
+                        color: Colors.black54,
+                      fontSize: MediaWidth < 400
+                          ? MediaWidth / 20
+                          : MediaWidth / 25,
+                    ),
+                  ),
+                ],
+              ),
+              onTap: () async {
+                httpProduto();
+
+              },
+            ),
+
+            //TODO deleta teste
+            ListTile(
+              title: Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 0, right: 10),
+                    child: Icon(Icons.delete,
+                        color: Colors.black54,
+                        size: MediaWidth < 400
+                            ? MediaWidth / 14
+                            : MediaWidth / 16
+                    ),
+                  ),
+                  Text(
+                    'deleta teste',
+                    style: TextStyle(
+                        color: Colors.black54,
+                      fontSize: MediaWidth < 400
+                          ? MediaWidth / 20
+                          : MediaWidth / 25,
+                    ),
+                  ),
+                ],
+              ),
+              onTap: () async {
+
+                DeletaTudoProduto();
+
+              },
+            ),
+
             //TODO Ultima sincronização
             ListTile(
               title: Container(

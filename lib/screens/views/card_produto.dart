@@ -1,3 +1,4 @@
+import 'package:appmestre/modelos/produto_card.dart';
 import 'package:appmestre/screens/detalhesdoitem.dart';
 import 'package:flutter/material.dart';
 

@@ -6,7 +6,7 @@ class ProdutoEstoqueDao{
 
   //TODO: Criação da table Produto
   static const String tableSql =
-      'CREATE TABLE ProdutoEstoque('
+      'CREATE TABLE ProdutosEstoque('
       'produtoId TEXT,'
       'empresaId TEXT,'
       'quantidadeSaldo REAL,'
@@ -41,7 +41,7 @@ class ProdutoEstoqueDao{
       estoqueMap['icmsVlSubstituto'] = produtoEstoque[i].icmsVlSubstituto;
       estoqueMap['au'] = produtoEstoque[i].au;
 
-      return db.insert('ProdutoEstoque', estoqueMap);
+      return db.insert('ProdutosEstoque', estoqueMap);
     }
     return 1;
   }
@@ -49,8 +49,8 @@ class ProdutoEstoqueDao{
   //TODO: Buscando todos os estoques
   Future<List<ProdutoEstoques>> findProdutoEstoque() async{
     final Database db = await getDatabase();
-    await db.query('ProdutoEstoque');
-    final List<Map<String, dynamic>> result = await db.rawQuery('SELECT * FROM ProdutoEstoque');
+    await db.query('ProdutosEstoque');
+    final List<Map<String, dynamic>> result = await db.rawQuery('SELECT * FROM ProdutosEstoque');
     final List<ProdutoEstoques> produtoEstoques = [];
 
     //TODO: Estoque
@@ -71,7 +71,14 @@ class ProdutoEstoqueDao{
         row['au'],
       );
       produtoEstoques.add(produtoEstoque);
-    } 
+    }
+    print('Estoque : $produtoEstoques');
     return produtoEstoques;
+  }
+
+  //TODO: Deletando todos os ProdutoEstoque
+  Future<int> deleteProdutoEmpresa() async{
+    final Database db = await getDatabase();
+    return db.delete('ProdutosEstoque');
   }
 }

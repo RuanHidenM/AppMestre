@@ -68,18 +68,31 @@ class EmpresaDao {
   //TODO: Buscando a empresa que for Padrao do usuario
   //TODO tipo : tipo do retorno
   //TODO - nome  (retorna apenas o nome)
+  //TODO - id (retorna id)
   Future<String> findEmpresaPadrao({required String tipo}) async{
-    if(tipo == 'nome'){
+
       final Database db = await getDatabase();
       await db.query('Empresa');
       final List<Map<String, dynamic>> result = await db.rawQuery('SELECT * FROM Empresa WHERE padrao = 1');
       final List<String> nomeEmpresaPadrao = [];
+      final List<String> idEmpresaPadrao = [];
+
+    if(tipo == 'nome'){
       for(Map<String, dynamic> row in result){
         final nome = row['nome'];
         nomeEmpresaPadrao.add(nome);
       }
       final String nomeDaEmpresa = nomeEmpresaPadrao[0];
       return nomeDaEmpresa;
+    }
+
+    if(tipo == 'id'){
+      for(Map<String, dynamic> row in result){
+        final id = row['id'];
+        nomeEmpresaPadrao.add(id);
+      }
+      final String idEmrpesa = nomeEmpresaPadrao[0];
+      return idEmrpesa;
     }
     return 'Empresa null';
   }

@@ -1,8 +1,11 @@
 import 'dart:convert';
 
+import 'package:appmestre/database/dao/card_produto.dart';
+import 'package:appmestre/database/dao/produto_codigo_barra_dao.dart';
 import 'package:appmestre/database/dao/produto_empresa_dao.dart';
 import 'package:appmestre/database/dao/produto_estoque_dao.dart';
 import 'package:appmestre/database/dao/produto_dao.dart';
+import 'package:appmestre/database/dao/produto_imagen_dao.dart';
 import 'package:appmestre/database/dao/produto_preco_dao.dart';
 import 'package:appmestre/database/dao/user_dao.dart';
 import 'package:appmestre/http/intercept.dart';
@@ -14,8 +17,6 @@ import 'package:appmestre/modelos/produto_imagens.dart';
 import 'package:appmestre/modelos/produto_preco.dart';
 import 'package:http/http.dart';
 import 'package:http_interceptor/http_interceptor.dart';
-
-Future<String> httpProduto() async {
 
   //TODO: Connectando com o usuario
   final _userDao = UserDao();
@@ -32,10 +33,18 @@ Future<String> httpProduto() async {
   //TODO: Conectada com o ProdutoPreco
   final _produtoPrecoDao = ProdutoPrecoDao();
 
+  //TODO: Conectando com o ProdutoImagen
+  final _produtoImagenDao = ProdutoImagenDao();
+
+  //TODO: Conectando com o ProdutoImagen
+  final _produtoCodigoBarraDao = ProdutoCodigoBarraDao();
+
+  //TODO Card do Produto
+  final _cardProdutoDao = CardProdutoDao();
 
 
 
-
+Future<String> httpProduto() async {
 
   //TODO: Retornado o interceptro do encio e o retorno do http
   Client client = InterceptedClient.build(interceptors: [LoggingInterceptor()]);
@@ -72,8 +81,8 @@ Future<String> httpProduto() async {
   final List<ProdutoEstoques> produtoEstoques = [];
   final List<ProdutoEmpresa> produtoEmpresas = [];
   final List<ProdutoPreco> produtoPrecos = [];
-  final List<ProdutoImagens> produtoImagens = [];
-  final List<ProdutoCodigoBarras> produtoCodigoBarras = [];
+  final List<ProdutoImagen> produtoImagens = [];
+  final List<ProdutoCodigoBarra> produtoCodigoBarras = [];
 
   //TODO: Listando Produto
   for (int i = 0; i < validMap.length; i++) {
@@ -151,12 +160,12 @@ Future<String> httpProduto() async {
 
     //TODO: Formando os modelos de Imagens
     for(int iimg = 0; iimg < validMap[i]['imagens'].length; iimg++){
-      ProdutoImagens produtoImagen = ProdutoImagens(
+      ProdutoImagen produtoImagen = ProdutoImagen(
         validMap[i]['imagens'][iimg]['produtoId'],
         validMap[i]['imagens'][iimg]['imagem'],
         validMap[i]['imagens'][iimg]['extensao'],
-        validMap[i]['imagens'][iimg]['principal'],
-        validMap[i]['imagens'][iimg]['utilizar'],
+        validMap[i]['imagens'][iimg]['principal'] == true ? 1 : 0,
+        validMap[i]['imagens'][iimg]['utilizar'] == true ? 1 : 0,
         validMap[i]['imagens'][iimg]['url'] ?? '',
       );
       produtoImagens.add(produtoImagen);
@@ -164,7 +173,7 @@ Future<String> httpProduto() async {
 
     //TODO: Formando os modelos de CodigoBarras
     for(int icodigo = 0; icodigo < validMap[i]['codigoBarras'].length; icodigo++){
-      ProdutoCodigoBarras produtoCodigoBarra = ProdutoCodigoBarras(
+      ProdutoCodigoBarra produtoCodigoBarra = ProdutoCodigoBarra(
           validMap[i]['codigoBarras'][icodigo]['produtoId'],
           validMap[i]['codigoBarras'][icodigo]['codigo'],
           validMap[i]['codigoBarras'][icodigo]['empresaId'],
@@ -172,14 +181,6 @@ Future<String> httpProduto() async {
       produtoCodigoBarras.add(produtoCodigoBarra);
     }
   }
-
-  // print('produtos : $produtos');
-  // print('produtos Estoque : $produtoEstoques');
-  // print('produtos Empresa : $produtoEmpresas');
-  // print('produtos Precos  : $produtoPrecos');
-  // print('produtos imagens : $produtoImagens');
-  // print('produtos codigoBarras : $produtoCodigoBarras');
-
 
   //TODO: Produto
   _produtoDao;
@@ -198,9 +199,33 @@ Future<String> httpProduto() async {
 
   //TODO: Produto Preco
   _produtoPrecoDao;
-  _produtoPrecoDao.save(produtoPrecos);
-  _produtoPrecoDao.findProdutopreco();
+  //_produtoPrecoDao.save(produtoPrecos);
+  //_produtoPrecoDao.findProdutopreco();
 
+  //TODO: Produto Imagen
+  _produtoImagenDao;
+  //_produtoImagenDao.save(produtoImagens);
+  //_produtoImagenDao.findProdutoImagen();
+
+  //TODO: Produto Codigo Barras
+  _produtoCodigoBarraDao;
+  //_produtoCodigoBarraDao.save(produtoCodigoBarras);
+  //_produtoCodigoBarraDao.findProdutoCodigoBarra();
+
+  _cardProdutoDao.findCardProduto();
 
   return '${validMap[0]['imagens']}';
 }
+
+Future<int> DeletaTudoProduto()async{
+  _produtoDao.deleteProduto();
+  _produtoEstoqueDao.deleteProdutoEmpresa();
+  _produtoEmpresaDao.deleteProdutoEmpresa();
+  _produtoPrecoDao.deleteProdutoPreco();
+  _produtoImagenDao.deleteProdutoImagen();
+  _produtoCodigoBarraDao.deleteCodigoBarra();
+  print('Todos deletados !!');
+  return 1;
+}
+
+
