@@ -184,32 +184,32 @@ Future<String> httpProduto() async {
 
   //TODO: Produto
   _produtoDao;
-  //_produtoDao.save(produtos);
+  _produtoDao.save(produtos);
   //_produtoDao.findProduto();
 
   //TODO: Produto Estoque
   _produtoEstoqueDao;
-  //_produtoEstoqueDao.save(produtoEstoques);
+  _produtoEstoqueDao.save(produtoEstoques);
   //_produtoEstoqueDao.findProdutoEstoque();
 
   //TODO Produto Empresa
   _produtoEmpresaDao;
-  //_produtoEmpresaDao.save(produtoEmpresas);
+  _produtoEmpresaDao.save(produtoEmpresas);
   //_produtoEmpresaDao.findProdutoEmpresa();
 
   //TODO: Produto Preco
   _produtoPrecoDao;
-  //_produtoPrecoDao.save(produtoPrecos);
+  _produtoPrecoDao.save(produtoPrecos);
   //_produtoPrecoDao.findProdutopreco();
 
   //TODO: Produto Imagen
   _produtoImagenDao;
-  //_produtoImagenDao.save(produtoImagens);
+  _produtoImagenDao.save(produtoImagens);
   //_produtoImagenDao.findProdutoImagen();
 
   //TODO: Produto Codigo Barras
   _produtoCodigoBarraDao;
-  //_produtoCodigoBarraDao.save(produtoCodigoBarras);
+  _produtoCodigoBarraDao.save(produtoCodigoBarras);
   //_produtoCodigoBarraDao.findProdutoCodigoBarra();
 
   _cardProdutoDao.findCardProduto();

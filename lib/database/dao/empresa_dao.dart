@@ -89,9 +89,9 @@ class EmpresaDao {
     if(tipo == 'id'){
       for(Map<String, dynamic> row in result){
         final id = row['id'];
-        nomeEmpresaPadrao.add(id);
+        idEmpresaPadrao.add(id);
       }
-      final String idEmrpesa = nomeEmpresaPadrao[0];
+      final String idEmrpesa = idEmpresaPadrao[0];
       return idEmrpesa;
     }
     return 'Empresa null';

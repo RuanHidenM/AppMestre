@@ -11,9 +11,9 @@ class ProdutoImagenDao{
       'produtoId TEXT,'
       'imagem TEXT,'
       'extensao TEXT,'
-      'principal INTEGER,'
-      'utilizar INTEGER,'
-      'ur TEXT'
+      'principal INTEGER,'//TODO: BOOL
+      'utilizar INTEGER,'//TODO: BOOL
+      'url TEXT'
       ')';
 
   //TODO: Slavando o ProdutoImagen
@@ -27,7 +27,7 @@ class ProdutoImagenDao{
       produtoImagenMap['extensao'] = produtoImagen[i].extensao;
       produtoImagenMap['principal'] = produtoImagen[i].principal;
       produtoImagenMap['utilizar'] = produtoImagen[i].utilizar;
-      produtoImagenMap['ur'] = produtoImagen[i].url;
+      produtoImagenMap['url'] = produtoImagen[i].url;
 
       return db.insert('ProdutosImagen', produtoImagenMap);
     }
@@ -50,7 +50,7 @@ class ProdutoImagenDao{
         row['extensao'],
         row['principal'],
         row['utilizar'],
-        row['ur']
+        row['url']
       );
       produtoImagens.add(produtoImagen);
       print('Imagens : $produtoImagens');

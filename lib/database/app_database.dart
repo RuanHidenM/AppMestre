@@ -45,7 +45,7 @@ Future<Database> getDatabase() async{
     //TODO: Verção do db
     version: 1,
     //TODO: upando a verção e deixando essa linha de comando ligada, ira deletar os dados da verção anterior
-    onDowngrade: onDatabaseDowngradeDelete
+    //onDowngrade: onDatabaseDowngradeDelete
   );
 
 }
