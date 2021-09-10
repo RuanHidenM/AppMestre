@@ -11,13 +11,10 @@ class DetalheProdutoDao{
   Future<ProdutoDetalhe> findDetalheProduto(String produtoId) async{
     final Database db = await getDatabase();
     await db.query('Produtos');
-
     //TODO: ID da empresa logada
     final String idEmpresaLogada = await _empresaDao.findEmpresaPadrao(tipo: 'id');
-
-    //final List<Map<String, dynamic>> result = await db.rawQuery(
     final List<Map<String, dynamic>> result = await db.rawQuery(
-        'SELECT '
+        'SELECT'
             ' P.id, P.referencia,'
             ' P.sku,'
             ' P.descricao,'
@@ -161,6 +158,10 @@ class DetalheProdutoDao{
   //   print('result ${result.runtimeType}');
   //   return 1;
   // }
+
+  //TODO: Buscando todas as IMG do produto, pegando primeiro o true
+
+  //TODO: Buscando todos o precos do produto
 
 }
 

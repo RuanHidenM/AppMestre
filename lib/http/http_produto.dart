@@ -192,7 +192,7 @@ Future<String> httpProduto() async {
   _produtoEstoqueDao.save(produtoEstoques);
   //_produtoEstoqueDao.findProdutoEstoque();
 
-  //TODO Produto Empresa
+  //TODO: Produto Empresa
   _produtoEmpresaDao;
   _produtoEmpresaDao.save(produtoEmpresas);
   //_produtoEmpresaDao.findProdutoEmpresa();
@@ -214,6 +214,7 @@ Future<String> httpProduto() async {
 
   _cardProdutoDao.findCardProduto();
 
+  print('Todos os cados gravados !!');
   return '${validMap[0]['imagens']}';
 }
 

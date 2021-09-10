@@ -10,6 +10,7 @@ class ProdutoDestaque extends StatefulWidget {
 
 class _produtoDestaque extends State<ProdutoDestaque> {
   CarouselController buttonCarouselControllerItem = CarouselController();
+
   get MediaWidth => MediaQuery.of(context).size.width;
 
   @override
@@ -31,9 +32,24 @@ class _produtoDestaque extends State<ProdutoDestaque> {
                         child: Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: Colors.white12,
                             borderRadius: BorderRadius.all(
                               Radius.circular(15),
+                            ),
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomLeft,
+                              colors: [
+                                //TODO Azul 4/4
+                                Color.fromRGBO(36, 82, 108, 20),
+                                //TODO AZUL 3/4. BRANCO 1/4
+                                Color.fromRGBO(36, 82, 108, 35),
+                                //TODO AZUL 2/4, BRANCO 2/4
+                                Color.fromRGBO(36, 82, 108, 55),
+                                //TODO AZUL 1/4, BRANCO 3/4
+                                Color.fromRGBO(36, 82, 108, 80),
+                                //TODO BRANCO 4/4
+                                Color.fromRGBO(36, 82, 108, 90),
+                              ],
                             ),
                           ),
                           child: Padding(
@@ -106,7 +122,7 @@ class _produtoDestaque extends State<ProdutoDestaque> {
                                     ),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: Color.fromRGBO(36, 82, 108, 55),
+                                        color: Color.fromRGBO(36, 82, 108, 20),
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(15),
                                         ),

@@ -82,3 +82,4 @@ class ProdutoEstoqueDao{
     return db.delete('ProdutosEstoque');
   }
 }
+

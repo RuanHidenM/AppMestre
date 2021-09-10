@@ -28,7 +28,8 @@ class ProdutoDao{
       'alteracaoUsuarioId TEXT,'
       'alteracaoUsuarioNome TEXT,'
       'alteracaoData TEXT,'
-      'descricaoView TEXT)';
+      'descricaoView TEXT'
+      ')';
 
   //TODO: Salvando produto
   Future<int> save(List<Produto> produto) async{
@@ -109,3 +110,6 @@ class ProdutoDao{
     return db.delete('Produtos');
   }
 }
+
+
+

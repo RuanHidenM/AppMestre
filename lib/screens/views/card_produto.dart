@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:appmestre/components/convertereais.dart';
 import 'package:appmestre/screens/detalhesdoitem.dart';
 import 'package:flutter/material.dart';
 
@@ -114,7 +115,7 @@ CardProduto(
                                             CrossAxisAlignment.end,
                                         children: [
                                           Text(
-                                            'R\$: $valor',
+                                            'R\$: ${converteReais(valor)}',
                                             style: TextStyle(
                                                 color: Colors.green,
                                                 fontSize: mediaWidth < 400

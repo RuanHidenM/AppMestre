@@ -1,3 +1,4 @@
+import 'package:appmestre/components/convertereais.dart';
 import 'package:appmestre/components/resumo_text.dart';
 import 'package:appmestre/database/dao/detalhe_produto.dart';
 import 'package:appmestre/modelos/produto_card.dart';
@@ -177,7 +178,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'R\$: ${_produtoDetalhe.Precospreco}',
+                                        'R\$: ${converteReais(_produtoDetalhe.Precospreco) }',
                                         style: TextStyle(
                                             fontSize: MediaWidth < 400
                                                 ? MediaWidth / 20
@@ -186,7 +187,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                                             fontWeight: FontWeight.w500),
                                       ),
                                       Text(
-                                        '88 un',
+                                        '${converteReais(_produtoDetalhe.EstoquesquantidadeSaldo)}',//converteReais()
                                         style: TextStyle(
                                             fontSize: MediaWidth < 400
                                                 ? MediaWidth / 22
@@ -213,7 +214,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                                         bottom:
                                             BorderSide(width: 0.2, color: Colors.black))),
                                 child: Text(
-                                  'Computador Live ZE intel windows ULN3350430W DUAL core N3350 4GB SSD 30GB HDMI USB REDE WINDOWS 10',
+                                  '${_produtoDetalhe.Produtodescricao}',
                                   style: TextStyle(
                                      color: Colors.black54,
                                       fontSize: MediaWidth < 400
@@ -387,7 +388,7 @@ class _detalhesDoItem extends State<DetalhesDoItem> {
                                             : 50,
                                         color: Colors.grey.shade200,
                                         child: Text(
-                                            '2084',
+                                            '${_produtoDetalhe.Produtoreferencia}',
                                             style: TextStyle(
                                               fontSize: MediaWidth / 25,
                                               fontWeight: FontWeight.w400,
